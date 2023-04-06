@@ -58,6 +58,22 @@ export default async function createPlugin(
           // resolver: providers.github.resolvers.usernameMatchingUserEntityName(),
         },
       }),
+
+     
+      microsoft: providers.microsoft.create({
+        signIn: {
+          resolver(_, ctx) {
+            const userRef = 'user:default/guest'; // Must be a full entity reference
+            return ctx.issueToken({
+              claims: {
+                sub: userRef, // The user's own identity
+                ent: [userRef], // A list of identities that the user claims ownership through
+              },
+            });
+          },
+          // resolver: providers.github.resolvers.usernameMatchingUserEntityName(),
+        },
+      }),  
     },
   });
 }
