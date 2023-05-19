@@ -37,25 +37,34 @@ backend:
     origin: http://localhost:3000
     methods: [GET, HEAD, PATCH, POST, PUT, DELETE]
     credentials: true
-  database:
-    # client: better-sqlite3
-    # connection: ":memory:"
-    client: pg
-    connection:
-      host: ${POSTGRES_HOST}
-      port: 5432
-      user: ${POSTGRES_USER}
-      password: ${POSTGRES_PASSWORD}
-    # plugin:
-    #   auth:
-    #     client:
-      # catalog:
-      #   connection:
-      #     database: backstage_plugin_catalog 
-    # app:
-    #   connection:
-    #     database: postgres
   
+  database:
+    client: better-sqlite3
+    connection: ":memory:"
+    # client: pg
+    # connection:
+    #   host: http://172.17.0.2 #${POSTGRES_HOST}
+    #   port: 5432
+    #   # user: ${POSTGRES_USER}
+    #   password: postgres #${POSTGRES_PASSWORD}
+    #   database: database #${POSTGRES_DATABASE}
+    #   restart: unless-stopped
+    # ensureExists: true
+
+    # plugin:
+    #   catalog:
+    #     connection:
+    #       database: database #${POSTGRES_DATABASE}
+    #   auth:
+    #     connection:
+    #       database: database #${POSTGRES_DATABASE}
+    #   app:
+    #     connection:
+    #       database: database #${POSTGRES_DATABASE}
+    #   scaffolder:
+    #     connection:
+    #       database: database #${POSTGRES_DATABASE}
+
   cache:
     store: memory
   
@@ -64,10 +73,6 @@ backend:
       - host: dev.azure.com
 
 integrations:
-  # github:
-  #   - host: github.com
-  #     token: ${GITHUB_TOKEN}
-  
   azure:
     - host: dev.azure.com
       token: ${AZURE_TOKEN}
@@ -158,30 +163,18 @@ techdocs:
   publisher:
     type: "local"
 
-# This is for k8s cluster management
-# Currently, just using a minikube cluster
-# TODO: Install backstage in GKE then point to GKE cluster
-
 kubernetes:
   serviceLocatorMethod:
-    type: "multiTenant"
-  clusterLocationMethdos:
-    - type: "config"
+    type: multiTenant
+  clusterLocatorMethods:
+    - type: config
       clusters:
-        - url: http://127.0.0.1:9999 # found by running `kubectl cluster-info`
-          name: minikube # unique within backstage project
-          authProvider: "serviceAccount" # uses a k8s sa, can use google sa
-          skipTLSVerify: false # k8s client verifies the TLS certificate presented by the API
+        - url:  ${k8s_url}
+          name: ${k8s_cluster_name}
+          authProvider: serviceAccount
+          skipTLSVerify: true
           skipMetricsLookup: true
-          # serviceAccountToken: ${K8S_MINIKUBE_TOKEN} # kubectl get secret
-          # dashboardUrl: http://127.0.0.1:64713
-          # dashboardApp: standard
-          # caData: ${K8S_CONFIG_CA_DATA}
-          caFile: "~/.minikube/ca.pem"
-          # customResources:
-          #   - group: 'argoproj.io'
-          #     apiVersion: 'v1alpha1'
-          #     plural: 'rollouts'
+          serviceAccountToken: ${k8s_sa_token}        
 
 azureDevOps:
     host: dev.azure.com

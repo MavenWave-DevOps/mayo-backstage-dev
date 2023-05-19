@@ -1,93 +1,31 @@
-#apiVersion: backstage.io/v1alpha1
-#kind: Component
-#metadata:
-#  name: backstage-local
-#  description: An example of a Backstage application.
-#  # Example for optional annotations
-#  # annotations:
-#  #   github.com/project-slug: backstage/backstage
-#  #   backstage.io/techdocs-ref: dir:.
-#spec:
-#  type: website
-#  owner: john@example.com
-#  lifecycle: experimental
-
-#apiVersion: backstage.io/v1alpha1
-#kind: Component
-#metadata:
-#  name: plugin-argocd-autopilot
-#spec:
-#  lifecycle: production
-#  owner: my-team
-#  type: service
-#---
-# apiVersion: backstage.io/v1alpha1
-# kind: Component
-# metadata:
-#   annotations:
-#     argocd/app-selector: "app.kubernetes.io/managed-by=argocd-autopilot"
-#   name: argocd-autopilot
-# spec:
-#   lifecycle: production
-#   owner: my-team
-#   type: service
-#
-# ---
-# apiVersion: backstage.io/v1alpha1
-# kind: Component
-# metadata:
-#   name: gcp-folder
-#   annotations:
-#     grafana/tag-selector: "Kubernetes"
-#   tags:
-#     - web
-#     - frontend
-#     - backstage
-#   links:
-#     - url: https://backstage.xxxxxx.xxx.xx
-#       title: Backstage
-#       icon: cloud
-# spec:
-#   lifecycle: production
-#   owner: mirage-team
-#   type: service
-# ---
-# apiVersion: backstage.io/v1alpha1
-# kind: Component
-# metadata:
-#   name: datasci-project
-# spec:
-#   lifecycle: produciton
-#   owner: data
-#   type: service
-
 apiVersion: backstage.io/v1alpha1
 kind: Component
 metadata:
-  name: backstage-web
-  description: Backstage experimental app
+  name: mayo-web
+  description: mayo web app
   annotations:
-    github.com/project-slug: MavenWave-DevOps/mayo-backstage-dev
-    backstage.io/kubernetes-id: backstage
+    github.com/project-slug: MavenWave-DevOps/mayo-backstage-dev/
+    backstage.io/kubernetes-id: mayo-backstage-dev
     backstage.io/techdocs-ref: dir:.
-    argocd/app-name: experimental-backstage
-    grafana/tag-selector: "Kubernetes"
-    prometheus.io/rule: 'sum by (backstage)(changes(kube_pod_status_ready{condition="true"}[10m]))'
+    argocd/app-name: dev-mayo-backstage-dev
+    grafana/tag-selector: "Kubernetes-mixin"
     prometheus.io/alert: all
+  
   tags:
     - web
-    - backstage
+    - mayo-web
+    - frontend
   links:
-    - url: https://backstage.io
-      title: Backstage
-      icon: cloud
+    - url: http://localhost:3000
+      title: Admin Dashboard
+      icon: dashboard
 spec:
   type: service
-  lifecycle: experimental
+  lifecycle: production
   owner: group:platform_admin
-  system: backstage
-  apiConsumedBy: ["system:backstage"]
-  dependsOn: ["resource:database", "resource:azure-storage"]
+  system: mayo-backstage-dev
+  dependsOn: ["resource:mayo-backstage-dev-db", "resource:mayo-backstage-dev-bucket"]
   providesApis:
-    - backstage
-
+    - mayo-backstage-dev
+  consumesApis:
+    - system:mayo-backstage-dev
