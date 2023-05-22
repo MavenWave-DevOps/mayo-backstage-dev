@@ -39,15 +39,15 @@ backend:
     credentials: true
   
   database:
-    client: better-sqlite3
-    connection: ":memory:"
-    # client: pg
-    # connection:
-    #   host: http://172.17.0.2 #${POSTGRES_HOST}
-    #   port: 5432
-    #   # user: ${POSTGRES_USER}
-    #   password: postgres #${POSTGRES_PASSWORD}
-    #   database: database #${POSTGRES_DATABASE}
+    # client: better-sqlite3
+    # connection: ":memory:"
+    client: pg
+    connection:
+      host: http://172.17.0.2 #${POSTGRES_HOST}
+      port: 5432
+      # user: ${POSTGRES_USER}
+      password: postgres #${POSTGRES_PASSWORD}
+      database: database #${POSTGRES_DATABASE}
     #   restart: unless-stopped
     # ensureExists: true
 
@@ -169,12 +169,12 @@ kubernetes:
   clusterLocatorMethods:
     - type: config
       clusters:
-        - url:  ${k8s_url}
-          name: ${k8s_cluster_name}
+        - url:  ${K8S_URL}
+          name: ${K8S_CLUSTER_NAME}
           authProvider: serviceAccount
           skipTLSVerify: true
           skipMetricsLookup: true
-          serviceAccountToken: ${k8s_sa_token}        
+          serviceAccountToken: ${K8S_SA_TOKEN}        
 
 azureDevOps:
     host: dev.azure.com
