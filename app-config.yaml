@@ -78,6 +78,13 @@ integrations:
       token: ${AZURE_TOKEN}
 
 proxy:
+  "/argocd/api":
+    target: https://argocd.px-dev.mavenwave.dev/api/v1/
+    changeOrigin: true
+    secure: false
+    headers:
+      Cookie:
+        $env: ARGOCD_AUTH_TOKEN
   "/grafana/api":
     target: https://monitoring.px-dev.mavenwave.dev/
     headers:
@@ -178,7 +185,7 @@ kubernetes:
           authProvider: serviceAccount
           skipTLSVerify: true
           skipMetricsLookup: true
-          serviceAccountToken: ${K8S_SA_TOKEN}        
+          serviceAccountToken: ${K8S_SA_TOKEN}
 
 azureDevOps:
     host: dev.azure.com

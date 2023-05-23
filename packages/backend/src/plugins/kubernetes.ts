@@ -1,5 +1,3 @@
-export{};
-
 import { KubernetesBuilder } from '@backstage/plugin-kubernetes-backend';
 import { Router } from 'express';
 import { PluginEnvironment } from '../types';
