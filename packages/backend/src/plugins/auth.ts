@@ -39,7 +39,7 @@ export default async function createPlugin(
       //         name: localPart,
       //         namespace: DEFAULT_NAMESPACE,
       //       });
-
+      //
       //       return ctx.issueToken({
       //         claims: {
       //           sub: userEntityRef,

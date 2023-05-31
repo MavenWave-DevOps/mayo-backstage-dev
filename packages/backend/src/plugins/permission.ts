@@ -1,16 +1,20 @@
 import { createRouter } from '@backstage/plugin-permission-backend';
 import {
-    AuthorizeResult, PolicyDecision, isPermission,
+    AuthorizeResult,
+    PolicyDecision,
+    isPermission,
 } from '@backstage/plugin-permission-common';
-import { PermissionPolicy, PolicyQuery, } from '@backstage/plugin-permission-node';
-
+import {
+    PermissionPolicy,
+    PolicyQuery,
+} from '@backstage/plugin-permission-node';
 import { catalogConditions, createCatalogConditionalDecision, } from '@backstage/plugin-catalog-backend/alpha';
 import { Router } from 'express';
 import { PluginEnvironment } from '../types';
 import { BackstageIdentityResponse } from '@backstage/plugin-auth-node';
 import { catalogEntityReadPermission } from '@backstage/plugin-catalog-common/alpha';
 
-class accessPolicy implements PermissionPolicy {
+class AccessPolicy implements PermissionPolicy {
   async handle(
     request: PolicyQuery,
     user?: BackstageIdentityResponse
@@ -49,7 +53,7 @@ export default async function createPlugin(
         config: env.config,
         logger: env.logger,
         discovery: env.discovery,
-        policy: new accessPolicy(),
+        policy: new AccessPolicy(),
         identity: env.identity,
     });
 }

@@ -43,11 +43,11 @@ backend:
     # connection: ":memory:"
     client: pg
     connection:
-      host: http://172.17.0.2 #${POSTGRES_HOST}
-      port: 5432
-      # user: ${POSTGRES_USER}
-      password: postgres #${POSTGRES_PASSWORD}
-      database: database #${POSTGRES_DATABASE}
+      host: ${POSTGRES_HOST}
+      port: ${POSTGRES_PORT}
+      user: ${POSTGRES_USER}
+      password: ${POSTGRES_PASSWORD}
+     # database: database #${POSTGRES_DATABASE}
     #   restart: unless-stopped
     # ensureExists: true
 
@@ -97,7 +97,6 @@ grafana:
 auth:
   environment: development
   providers:
-    
     microsoft:
       development:
         clientId: &clientId ${AUTH_MICROSOFT_CLIENT_ID}
