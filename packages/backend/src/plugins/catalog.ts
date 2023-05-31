@@ -12,6 +12,7 @@ export default async function createPlugin(
   /**
    * ADO entity provider
    */
+  // eslint-disable-next-line @typescript-eslint/no-unused-expressions
   AzureDevOpsEntityProvider.fromConfig(env.config, { logger: env.logger, schedule: env.scheduler.createScheduledTaskRunner({ frequency: { minutes: 20 }, timeout: { minutes: 2 }, }), }),
     
   /**
