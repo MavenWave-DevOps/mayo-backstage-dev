@@ -70,6 +70,7 @@ import {
 } from '@k-phoen/backstage-plugin-grafana';
 
 import { EntityKubernetesContent } from '@backstage/plugin-kubernetes';
+import { EntityAzurePipelinesContent, isAzureDevOpsAvailable, isAzurePipelinesAvailable, EntityAzurePullRequestsContent, EntityAzureGitTagsContent } from '@backstage/plugin-azure-devops';
 
 const techdocsContent = (
   <EntityTechdocsContent>
@@ -83,6 +84,14 @@ const cicdContent = (
   // This is an example of how you can implement your company's logic in entity page.
   // You can for example enforce that all components of type 'service' should use GitHubActions
   <EntitySwitch>
+    <EntitySwitch.Case if={isAzurePipelinesAvailable}>
+      <EntityAzurePipelinesContent defaultLimit={15} />
+    </EntitySwitch.Case>
+
+    <EntitySwitch.Case if={isAzureDevOpsAvailable}>
+        <EntityAzurePipelinesContent defaultLimit={15} />
+    </EntitySwitch.Case>
+
     <EntitySwitch.Case if={isGithubActionsAvailable}>
       <EntityGithubActionsContent />
     </EntitySwitch.Case>
@@ -162,6 +171,12 @@ const overviewContent = (
 
 const serviceEntityPage = (
   <EntityLayout>
+    <EntityLayout.Route if={isAzureDevOpsAvailable} path="/git-tags" title="Git Tags">
+      <EntityAzureGitTagsContent />
+    </EntityLayout.Route>
+    <EntityLayout.Route if={isAzureDevOpsAvailable} path="/pull-requests" title="Pull Requests">
+      <EntityAzurePullRequestsContent defaultLimit={15} />
+    </EntityLayout.Route>
     <EntityLayout.Route path="/" title="Overview">
       {overviewContent}
     </EntityLayout.Route>
