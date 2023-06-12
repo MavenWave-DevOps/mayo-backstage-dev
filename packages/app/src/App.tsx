@@ -1,5 +1,8 @@
 import React from 'react';
-import { Navigate, Route } from 'react-router';
+import { 
+  // Navigate,
+  Route
+  } from 'react-router';
 import { apiDocsPlugin, ApiExplorerPage } from '@backstage/plugin-api-docs';
 import {
   CatalogEntityPage,
@@ -48,6 +51,10 @@ import { FlatRoutes } from '@backstage/core-app-api';
 import { RequirePermission } from '@backstage/plugin-permission-react';
 import { catalogEntityCreatePermission } from '@backstage/plugin-catalog-common/alpha';
 import { providers } from './components/signin/identityProviders';
+// import Login from './images/loginCover.png';
+import { HomepageCompositionRoot } from '@backstage/plugin-home';
+import { homePage } from './components/home/HomePage';
+import { ExplorePage } from '@backstage/plugin-explore';
 import {
   RELATION_API_CONSUMED_BY,
   RELATION_API_PROVIDED_BY,
@@ -69,9 +76,10 @@ const app = createApp({
         <SignInPage
           {...props}
           providers={['guest', ...providers]}
-          title="Select a sign-in method"
+          
           align="center"
         />
+        
       );
     },
   },
@@ -132,7 +140,11 @@ const AppRouter = app.getRouter();
 
 const routes = (
   <FlatRoutes>
-    <Route path="/" element={<Navigate to="catalog" />} />
+    <Route path="/" element={<HomepageCompositionRoot />}>
+      {homePage}
+    </Route>
+    <Route path="/explore" element={<ExplorePage />} />
+    {/* <Route path="/" element={<Navigate to="catalog" />} /> */}
     <Route path="/api-docs" element={<ApiExplorerPage />} />
     <Route path="/catalog" element={<CatalogIndexPage />} />
     <Route
@@ -212,12 +224,16 @@ const routes = (
 
 const App = () => (
   <AppProvider>
+    <div className='loginContainer'>
+    {/* <img src={Login} alt="Image" width="90%" height="400" className='loginBanner' /> */}
     <AlertDisplay />
     <OAuthRequestDialog />
     <AppRouter>
       <Root>{routes}</Root>
     </AppRouter>
+    </div>
   </AppProvider>
 );
+
 
 export default App;

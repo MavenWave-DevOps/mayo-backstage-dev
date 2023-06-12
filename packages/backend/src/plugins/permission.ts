@@ -42,7 +42,7 @@ class AccessPolicy implements PermissionPolicy {
         ],
       });
     }
-    return { result: AuthorizeResult.ALLOW };
+    return { result: AuthorizeResult.DENY };
   }
 }
 

@@ -14,7 +14,7 @@ import {
   Settings as SidebarSettings,
   UserSettingsSignInAvatar,
 } from '@backstage/plugin-user-settings'
-import { SidebarSearchModal } from '@backstage/plugin-search'
+import { SearchModal, SidebarSearchModal } from '@backstage/plugin-search'
 import {
   Sidebar,
   sidebarConfig,
@@ -26,6 +26,8 @@ import {
   SidebarSpace,
   SidebarExpandButton,
   useSidebarOpenState,
+  SidebarSubmenu,
+  SidebarSubmenuItem,
 } from '@backstage/core-components'
 import MenuIcon from '@material-ui/icons/Menu'
 import SearchIcon from '@material-ui/icons/Search'
@@ -33,6 +35,12 @@ import { appThemeApiRef, useApi } from '@backstage/core-plugin-api'
 import { MayoLogoFull } from './MayoLogoFull'
 import { MayoLogoIcon } from './MayoLogoIcon'
 import { BackstageTheme } from '@backstage/theme'
+import CategoryIcon from '@material-ui/icons/Category';
+import LayersIcon from '@material-ui/icons/Layers';
+import Score from '@material-ui/icons/Score';
+// import BuildIcon from '@material-ui/icons/Build';
+import { useApp } from '@backstage/core-plugin-api';
+import { MyGroupsSidebarItem } from '@backstage/plugin-org';
 
 const useSidebarLogoStyles = makeStyles<BackstageTheme, { themeId: string }>({
   root: {
@@ -80,13 +88,82 @@ export const Root = ({ children }: PropsWithChildren<{}>) => (
   <SidebarPage>
     <Sidebar>
       <SidebarLogo />
+      
       <SidebarGroup label='Search' icon={<SearchIcon />} to='/search'>
-        <SidebarSearchModal />
+        <SidebarSearchModal>
+           {({ toggleModal }) => <SearchModal toggleModal={toggleModal} />}
+        </SidebarSearchModal>
+
       </SidebarGroup>
       <SidebarDivider />
+
       <SidebarGroup label='Menu' icon={<MenuIcon />}>
         {/* Global nav, not org-specific */}
-        <SidebarItem icon={HomeIcon} to='catalog' text='Home' />
+        <SidebarItem icon={HomeIcon} to='/' text='Home'>
+        <SidebarSubmenu title="catalog">
+            <SidebarSubmenuItem
+              title="Domains"
+              to="catalog?filters[kind]=domain"
+              icon={useApp().getSystemIcon('kind:domain')}
+            />
+            <SidebarSubmenuItem
+              title="Systems"
+              to="catalog?filters[kind]=system"
+              icon={useApp().getSystemIcon('kind:system')}
+            />
+            <SidebarSubmenuItem
+              title="Components"
+              to="catalog?filters[kind]=component"
+              icon={useApp().getSystemIcon('kind:component')}
+            />
+            <SidebarSubmenuItem
+              title="APIs"
+              to="catalog?filters[kind]=api"
+              icon={useApp().getSystemIcon('kind:api')}
+          />
+          
+           <SidebarDivider />
+            <SidebarSubmenuItem
+              title="Resources"
+              to="catalog?filters[kind]=resource"
+              icon={useApp().getSystemIcon('kind:resource')}
+            />
+          <SidebarDivider />
+          
+           <SidebarSubmenuItem
+              title="Groups"
+              to="catalog?filters[kind]=group"
+              icon={useApp().getSystemIcon('kind:group')}
+            />
+            <SidebarSubmenuItem
+              title="Users"
+              to="catalog?filters[kind]=user"
+              icon={useApp().getSystemIcon('kind:user')}
+            />
+          </SidebarSubmenu>
+        </SidebarItem>
+        <MyGroupsSidebarItem
+          singularTitle="My Squad"
+          pluralTitle="My Squads"
+          icon={useApp().getSystemIcon('group')!}
+        />
+        <SidebarItem
+          icon={useApp().getSystemIcon('kind:api')!}
+          to="api-docs"
+          text="APIs"
+        />
+        <SidebarItem
+          icon={useApp().getSystemIcon('docs')!}
+          to="docs"
+          text="Docs"
+        />
+            
+
+        {/* <SidebarItem icon={HomeIcon} to="/" text="Home" />    */}
+        
+        
+        <SidebarItem icon={CategoryIcon} to="catalog" text="catalog" />
+        <SidebarItem icon={LayersIcon} to="explore" text="Explore" />
         <SidebarItem icon={ExtensionIcon} to='api-docs' text='APIs' />
         <SidebarItem icon={LibraryBooks} to='docs' text='Docs' />
         <SidebarItem icon={CreateComponentIcon} to='create' text='Create...' />
@@ -99,6 +176,7 @@ export const Root = ({ children }: PropsWithChildren<{}>) => (
       </SidebarGroup>
       <SidebarItem icon={MoneyIcon} to="cost-insights" text="Cost Insights" />
       <SidebarItem icon={GraphiQLIcon} to="graphiql" text="GraphiQL" />
+      <SidebarItem icon={Score} to="score-board" text="Score board" />
       <SidebarSpace />
       <SidebarDivider />
       <SidebarGroup
@@ -108,6 +186,7 @@ export const Root = ({ children }: PropsWithChildren<{}>) => (
       >
         <SidebarExpandButton />
         <SidebarSettings />
+        {/*< SidebarItem icon={BuildIcon} to="devtools" text="DevTools" /> */}
       </SidebarGroup>
     </Sidebar>
     {children}
