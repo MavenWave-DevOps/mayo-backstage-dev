@@ -101,13 +101,19 @@ const createCustomThemeOverrides = (
   return {
     BackstageHeader: {
       header: {
-        backgroundImage: 'unset',
-        boxShadow: 'unset',
-        paddingBottom: theme.spacing(1),
+        backgroundImage: theme.page.fontColor,
+        background: '#4b5a6b',
+        backgroundPosition: 'center',
+        borderBottom: '1px solid #FFFFFF',
+        boxShadow: '#0065FF',
+        height: '100px',
+        padding: '50px',
+        paddingBottom: theme.spacing(5),
       },
       title: {
-        color: theme.page.fontColor,
+        color: '#FFFFFF',
         fontWeight: 900,
+        textAlign: 'center',
       },
       subtitle: {
         color: alpha(theme.page.fontColor, 0.8),
