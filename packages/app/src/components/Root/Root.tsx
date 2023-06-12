@@ -183,8 +183,9 @@ export const Root = ({ children }: PropsWithChildren<{}>) => (
         icon={<UserSettingsSignInAvatar />}
         to='/settings'
       >
+        <SidebarExpandButton />
         <SidebarSettings />
-        <SidebarItem icon={BuildIcon} to="devtools" text="DevTools" />
+        {/*< SidebarItem icon={BuildIcon} to="devtools" text="DevTools" /> */}
       </SidebarGroup>
     </Sidebar>
     {children}

@@ -20,7 +20,7 @@ class AccessPolicy implements PermissionPolicy {
     user?: BackstageIdentityResponse
   ):Promise<PolicyDecision> {
     if(isPermission(request.permission,catalogEntityReadPermission)){
-      if(user?.identity.ownershipEntityRefs.includes('group:default/ado-dev-team')){
+      if(user?.identity.ownershipEntityRefs.includes('group:default/platform_admin')){
         return{result: AuthorizeResult.ALLOW}
       }
 
@@ -42,7 +42,7 @@ class AccessPolicy implements PermissionPolicy {
         ],
       });
     }
-    return { result: AuthorizeResult.ALLOW };
+    return { result: AuthorizeResult.DENY };
   }
 }
 
