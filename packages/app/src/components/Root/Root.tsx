@@ -24,6 +24,7 @@ import {
   SidebarPage,
   SidebarScrollWrapper,
   SidebarSpace,
+  SidebarExpandButton,
   useSidebarOpenState,
   SidebarSubmenu,
   SidebarSubmenuItem,
@@ -37,7 +38,7 @@ import { BackstageTheme } from '@backstage/theme'
 import CategoryIcon from '@material-ui/icons/Category';
 import LayersIcon from '@material-ui/icons/Layers';
 import Score from '@material-ui/icons/Score';
-import BuildIcon from '@material-ui/icons/Build';
+// import BuildIcon from '@material-ui/icons/Build';
 import { useApp } from '@backstage/core-plugin-api';
 import { MyGroupsSidebarItem } from '@backstage/plugin-org';
 
