@@ -43,7 +43,7 @@ backend:
     # connection: ":memory:"
     client: pg
     connection:
-      host: ${POSTGRES_SERVICE_HOST}
+      host: ${POSTGRES_HOST}
       port: ${POSTGRES_SERVICE_PORT}
       user: ${POSTGRES_USER}
       password: ${POSTGRES_PASSWORD}
