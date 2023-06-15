@@ -2,8 +2,8 @@
 steps:
 - name: "gcr.io/kaniko-project/executor:latest"
   args:
-    - --destination=us.gcr.io/px-test1-project-ici/mayo-backstage:$COMMIT_SHA
-    - --destination=us.gcr.io/px-test1-project-ici/mayo-backstage:latest
+    - --destination=us.gcr.io/test-app-384114/mayo-backstage:$COMMIT_SHA
+    - --destination=us.gcr.io/test-app-384114/mayo-backstage:latest
     - --dockerfile=./Dockerfile
     - --context=.
     - --cache=true
