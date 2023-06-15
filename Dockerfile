@@ -14,7 +14,7 @@ RUN find packages \! -name "package.json" -mindepth 2 -maxdepth 2 -exec rm -rf {
 # Stage 2 - Install dependencies and build packages
 FROM node:16-bullseye-slim AS build
 
-# install sqlite3 dependencies
+
 RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
     --mount=type=cache,target=/var/lib/apt,sharing=locked \
     apt-get update && \
@@ -51,6 +51,7 @@ RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
     apt-get install -y --no-install-recommends libsqlite3-dev python3 build-essential && \
     yarn config set python /usr/bin/python3
 
+# From here on we use the least-privileged `node` user to run the backend.
 USER node
 
 # This should create the app dir as `node`.

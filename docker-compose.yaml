@@ -1,17 +1,17 @@
 version: '3.8'
 services:
-  db:
-    image: postgres:latest
-    restart: unless-stopped
-    environment:
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=postgres
-
-  adminer:
-    image: adminer
-    restart: unless-stopped
-    ports:
-      - 8080:8080
+  #   db:
+  #     image: postgres:latest
+  #     restart: unless-stopped
+  #     environment:
+  #       - POSTGRES_USER=postgres
+  #       - POSTGRES_PASSWORD=postgres
+  # 
+  #   adminer:
+  #     image: adminer
+  #     restart: unless-stopped
+  #     ports:
+  #       - 8080:8080
 
   backstage:
     image: backstage
@@ -27,7 +27,7 @@ services:
       - AUTH_MICROSOFT_TENANT_ID=${AUTH_MICROSOFT_TENANT_ID}
       - AZURE_TOKEN=${AZURE_TOKEN}
       - BACKEND_SECRET=${BACKEND_SECRET}
-      - K8S_URL=${K8S_URL}
-      - K8S_CLUSTER_NAME=${K8S_CLUSTER_NAME}
-      - K8S_SA_TOKEN=${K8S_SA_TOKEN}
+        #       - K8S_URL=${K8S_URL}
+        #       - K8S_CLUSTER_NAME=${K8S_CLUSTER_NAME}
+        #       - K8S_SA_TOKEN=${K8S_SA_TOKEN}
        

@@ -173,18 +173,18 @@ techdocs:
   publisher:
     type: "local"
 
-# kubernetes:
-#   serviceLocatorMethod:
-#     type: multiTenant
-#   clusterLocatorMethods:
-#     - type: config
-#       clusters:
-#         - url:  ${K8S_URL}
-#           name: ${K8S_CLUSTER_NAME}
-#           authProvider: serviceAccount
-#           skipTLSVerify: true
-#           skipMetricsLookup: true
-#           serviceAccountToken: ${K8S_SA_TOKEN}
+kubernetes:
+  serviceLocatorMethod:
+    type: multiTenant
+  clusterLocatorMethods:
+    - type: config
+      clusters:
+        - url:  ${K8S_URL}
+          name: ${K8S_CLUSTER_NAME}
+          authProvider: serviceAccount
+          skipTLSVerify: true
+          skipMetricsLookup: true
+          serviceAccountToken: ${K8S_SA_TOKEN}
 
 azureDevOps:
     host: dev.azure.com
