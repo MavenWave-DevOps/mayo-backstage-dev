@@ -13,7 +13,7 @@ import {
   CatalogImportPage,
   catalogImportPlugin,
 } from '@backstage/plugin-catalog-import';
-import { ScaffolderPage, scaffolderPlugin } from '@backstage/plugin-scaffolder';
+import { ScaffolderFieldExtensions, ScaffolderPage, scaffolderPlugin } from '@backstage/plugin-scaffolder';
 import {
   CatalogGraphPage,
   catalogGraphPlugin,
@@ -67,6 +67,7 @@ import {
   RELATION_PART_OF,
   RELATION_PROVIDES_API,
 } from '@backstage/catalog-model';
+import { InputListExtension } from './scaffolder/InputList';
 
 const app = createApp({
   apis,
@@ -175,7 +176,11 @@ const routes = (
 
     <Route path="/my-plugin" element={<EntityMyPluginContent />}/>
 
-    <Route path="/create" element={<ScaffolderPage />} />
+    <Route path="/create" element={<ScaffolderPage />}>
+      <ScaffolderFieldExtensions>
+        <InputListExtension/>
+      </ScaffolderFieldExtensions>
+    </Route>
     <Route path="/api-docs" element={<ApiExplorerPage />} />
     <Route
       path="/tech-radar"

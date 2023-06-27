@@ -4,7 +4,7 @@ import { FieldProps } from '@rjsf/core';
 import FormControl from '@material-ui/core/FormControl';
 import {Button, Modal} from "@material-ui/core";
 
-export const InputListExtension = ({
+export const InputList = ({
     onChange,
     rawErrors,
     required,
