@@ -8093,18 +8093,7 @@
     nanoid "^3.1.23"
     prop-types "^15.7.2"
     react-is "^16.9.0"
-
-"@rjsf/core@^5.8.1":
-  version "5.8.1"
-  resolved "https://registry.yarnpkg.com/@rjsf/core/-/core-5.8.1.tgz#9071ba570cb748658148ed1f5f02a9d5611f0bae"
-  integrity sha512-+lJKK/fdVO+DqKhSzSY8bjyAv5weoLw44d/DnCn2U8/l9qY0nqfNSvG6gyZIC9kCNnzLS/76XFAltWXgtjjzFQ==
-  dependencies:
-    lodash "^4.17.21"
-    lodash-es "^4.17.21"
-    markdown-to-jsx "^7.2.1"
-    nanoid "^3.3.6"
-    prop-types "^15.8.1"
-
+       
 "@rjsf/material-ui-v5@npm:@rjsf/material-ui@5.6.0", "@rjsf/material-ui@5.6.0":
   version "5.6.0"
   resolved "https://registry.yarnpkg.com/@rjsf/material-ui/-/material-ui-5.6.0.tgz#f547dfd17e24036ba1e495760d16cbce6d5da985"
