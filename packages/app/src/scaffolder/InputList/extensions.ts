@@ -4,7 +4,7 @@ import {
 } from "@backstage/plugin-scaffolder";
 import {
     InputList,
-    InputListValidation
+   InputListValidation
 } from './InputListExtension';
 
 export const InputListExtension = scaffolderPlugin.provide(

@@ -1,8 +1,8 @@
 
 import React, {useRef, useState} from 'react';
-import { FieldProps } from '@rjsf/core';
-import FormControl from '@material-ui/core/FormControl';
-import {Button, Modal} from "@material-ui/core";
+import { FieldProps,FieldValidation  } from '@rjsf/core';
+import Form from "@rjsf/core";
+
 
 export const InputList = ({
     onChange,
@@ -10,6 +10,13 @@ export const InputList = ({
     required,
     formData,
 }: FieldProps<string>) => {
+
+    const schema = require("./schema.json")
+    const formDataa = require("./formData.json")
+    const uiSchema = require("./uiSchema.json")
+
+
+
     // const [newListItem, setNewListItem] = useState([]);
     // const [show, setShow] = useState(false);
     // const input = useRef();
@@ -22,37 +29,16 @@ export const InputList = ({
     // };
 
     return (
-        <FormControl
-            // margin="normal"
-            // required={required}
-            // error={rawErrors?.length > 0 && !formData}
+        <div className="form">
+            
+        <Form
+            schema={schema}
+            uiSchema={uiSchema}
+           formData={formDataa}
         >
-        //     <Button onClick={changeOpen}>Add to the List</Button>
 
-        // </FormControl>
-        //     <Modal show={show} onHide={changeClose}>
-        //         <Modal.Header closeButton>
-        //             <Modal.Title>This is the Title</Modal.Title>
-        //         </Modal.Header>
-        //         <form onSubmit={addToList}>
-        //             <Modal.Body>
-        //                 <Form.Group>
-        //                     <Form.Label>Item</Form.Label>
-        //                     <br />
-        //                     <Form.Control type="text" ref={input} placeholder="Normal text" />
-        //                 </Form.Group>
-        //             </Modal.Body>
-        //             <Modal.Footer>
-        //                 <Button type="sumbit">Add to List</Button>
-        //             </Modal.Footer>
-        //         </form>
-        //     </Modal>
-
-        //     <ul>
-        //         {newListItem.map((item, b) => (
-        //             <li key={b}>{item}</li>
-        //         ))}
-        //     </ul>
+        </Form>
+    </div>
 );}
 
 // const [newListItem, setNewListItem] = useState([]);
@@ -99,5 +85,11 @@ export const InputList = ({
 // );
 
 
-export const InputListValidation = function() {
-};
+
+
+export const InputListValidation = (
+   
+  ) => {
+   
+    
+  };

@@ -1,0 +1,11 @@
+{
+  "ui:submitButtonOptions": {
+    "submitText": "Confirm Details",
+    "norender": false,
+    "props": {
+      "disabled": true,
+      "className": "btn btn-info"
+    }
+  }
+
+}
