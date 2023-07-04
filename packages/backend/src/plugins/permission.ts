@@ -13,43 +13,7 @@ import { Router } from 'express';
 import { PluginEnvironment } from '../types';
 import { BackstageIdentityResponse } from '@backstage/plugin-auth-node';
 import { catalogEntityReadPermission } from '@backstage/plugin-catalog-common/alpha';
-import { Config, ConfigReader } from '@backstage/config';
 import { getRootLogger, loadBackendConfig } from '@backstage/backend-common';
-
-
-// export interface ymlConfig {
-//   ADMIN: string;
-//   GROUP: string;
-//   USER: string;
-// }
-// const getymlConfig = (config: Config): ymlConfig => {
-//   return config.get<ymlConfig>('backend.env');
-// }
-
-// let rbac = getymlConfig(ConfigReader.fromConfigs());
-
-// const backendConfig = {
-//   backend: {
-//     baseUrl: 'http://localhost:7007',
-//   },
-// };
-// const Rconfig = new ConfigReader(backendConfig);
-// console.log('$##########################33$', Rconfig.getConfig('backend'));
-
-//Custome code start here
-async function main() {
-  const config = await loadBackendConfig({
-    argv: process.argv,
-    logger: getRootLogger(),
-  });
-  const itemConfig = config.getConfig('rbac-plugin.teams');
-  console.log('$$$$$$$$$$$$$$$$$$$$$$$4', itemConfig)
-}
-main().catch(error => {
-  console.error('Backend failed to start up', error);
-  process.exit(1);
-});
-//End of the custom code
 
 class AccessPolicy implements PermissionPolicy {
   async handle(
@@ -57,11 +21,11 @@ class AccessPolicy implements PermissionPolicy {
     user?: BackstageIdentityResponse
   ): Promise<PolicyDecision> {
     if (isPermission(request.permission, catalogEntityReadPermission)) {
-      if (user?.identity.ownershipEntityRefs.includes('group:default/ado-dev-team')) {
+      if (user?.identity.ownershipEntityRefs.includes('group:default/' + group)) {
         return { result: AuthorizeResult.ALLOW }
       }
 
-      if (user?.identity.ownershipEntityRefs.includes('group:default/businessb') || user?.identity.ownershipEntityRefs.includes('group:default/business_a')) {
+      if (user?.identity.ownershipEntityRefs.includes('group:default/' + group) || user?.identity.ownershipEntityRefs.includes('group:default/' + group)) {
         return { result: AuthorizeResult.ALLOW }
       }
 
@@ -79,7 +43,7 @@ class AccessPolicy implements PermissionPolicy {
         ],
       });
     }
-    return { result: AuthorizeResult.ALLOW };
+    return { result: AuthorizeResult.DENY };
   }
 }
 
@@ -94,3 +58,26 @@ export default async function createPlugin(
     identity: env.identity,
   });
 }
+
+/**
+ * Read user group from config
+ */
+let group = '';
+export async function main() {
+  const config = await loadBackendConfig({
+    argv: process.argv,
+    logger: getRootLogger(),
+  });
+  for (const itemKey of config.keys()) {
+    if (itemKey == 'app' || itemKey == 'otherrole') {
+      const itemConfig = config.getConfig('set-permission.role').getConfig(itemKey);
+      group = itemConfig.getString('group') ?? [];
+    }
+
+  }
+  return group;
+}
+main().catch(error => {
+  console.error('Backend failed to start up, Please Define Role in Config', error);
+  process.exit(1);
+});
