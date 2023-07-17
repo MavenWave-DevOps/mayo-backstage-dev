@@ -13,7 +13,7 @@ import { FieldProps } from '@rjsf/core';
 export const InputList = ({
   onChange,
   
-  formData,
+ 
 }: FieldProps<string>) => {
   
   
@@ -104,7 +104,7 @@ export const InputList = ({
              name="lifecycle"
              label="lifecycle"
              variant='filled'
-            //  value={inputFields.lifecycle}
+             value={inputFields.lifecycle}
             onChange={e =>handleChangeInput(index,e) }
             ></TextField>
             <br></br>
@@ -115,7 +115,7 @@ export const InputList = ({
              name="repo"
              label="repo"
              variant='filled'
-            //  value={inputFields.repo}
+            value={inputFields.repo}
             onChange={e =>handleChangeInput(index,e) }
             ></TextField>
              <br></br>
@@ -127,7 +127,7 @@ export const InputList = ({
              name="label"
              label="label"
              variant='filled'
-           // value={inputFields.label}
+           value={inputFields.label}
            onChange={e =>handleChangeInput(index,e) }
             ></TextField>
             <br></br>
