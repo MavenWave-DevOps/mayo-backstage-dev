@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
-import FormControl from '@material-ui/core/FormControl';
-import { Button,  Checkbox,  IconButton,  Input,  TextField,Typography } from '@material-ui/core';
+
+import {  IconButton,   TextField, } from '@material-ui/core';
 import RemoveIcon from '@material-ui/icons/Remove';
 import AddIcon from '@material-ui/icons/Add';
-import { FieldExtensionComponentProps } from '@backstage/plugin-scaffolder';
-import { FieldProps, FieldValidation } from '@rjsf/core';
-import { Textarea } from '@mui/joy';
+import { FieldProps } from '@rjsf/core';
+
 
 /*
  This is the actual component that will get rendered in the form
@@ -27,7 +26,7 @@ export const InputList = ({
   const [inputFields,setInputFields]=useState<dataType[]>([{lifecycle:'',repo:'',label:''}]);
    
 
-  const handleChangeInput=(index:number,event)=>{
+  const handleChangeInput=(index:number,event:any)=>{
   
     const values=[...inputFields]  ;         
     values[index][event?.target.name]=event?.target.value;
