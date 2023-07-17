@@ -12,8 +12,7 @@ import { FieldProps } from '@rjsf/core';
 
 export const InputList = ({
   onChange,
-  rawErrors,
-  required,
+  
   formData,
 }: FieldProps<string>) => {
   
@@ -31,7 +30,7 @@ export const InputList = ({
     const values=[...inputFields]  ;         
     values[index][event?.target.name]=event?.target.value;
     setInputFields(values);
-     console.log(inputFields);
+     
      
   }
 
@@ -74,12 +73,12 @@ export const InputList = ({
 
   const handleAddFields=()=>{
      setInputFields([...inputFields,{lifecycle:'',repo:'',label:''}])
-     console.log(formData);
+    
   }
 
   
   const handleRemovefields=(index:number)=>{
-    console.log(index);
+   
     if(index===0)
     {
       return;
