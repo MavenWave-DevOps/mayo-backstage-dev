@@ -1,9 +1,0 @@
-{
-  "disabled": "I am disabled.",
-  "readonly": "I am read-only.",
-  "customArray": [
-    "react",
-    "jsonschema",
-    "form"
-  ]
-}
