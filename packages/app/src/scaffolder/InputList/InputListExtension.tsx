@@ -152,7 +152,7 @@ export const InputList = ({
       /> Parse the Project detials  (kindly recheck the checkbox if you make changes above)
       <br></br>
  
-     <textarea disabled id="textArea" cols="100" rows="10"></textarea>
+     <textarea disabled id="textArea" cols={100} rows={10}></textarea>
          
 </form>
   );
