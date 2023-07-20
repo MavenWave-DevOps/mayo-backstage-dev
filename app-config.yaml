@@ -22,9 +22,14 @@ permission:
   enabled: true
 
 backend:
+  env:
+    KEY_1: "value1"
+    KEY_2: "value2"
+    KEY_3: "value3"
+
   auth:
     keys:
-      - secret: ${BACKEND_SECRET}  # run this command to get BACKEND_SECRET ->  node -p 'require("crypto").randomBytes(24).toString("base64")'
+      - secret: ${BACKEND_SECRET} # run this command to get BACKEND_SECRET ->  node -p 'require("crypto").randomBytes(24).toString("base64")'
 
   apiUrl: http://localhost:7007 # "http://mirage.px-dev.mavenwave.dev/run"
 
@@ -37,17 +42,17 @@ backend:
     origin: http://localhost:7007
     methods: [GET, HEAD, PATCH, POST, PUT, DELETE]
     credentials: true
-  
+
   database:
-    # client: better-sqlite3
-    # connection: ":memory:"
-    client: pg
-    connection:
-      host: ${POSTGRES_HOST}
-      port: ${POSTGRES_PORT}
-      user: ${POSTGRES_USER}
-      password: ${POSTGRES_PASSWORD}
-     # database: database #${POSTGRES_DATABASE}
+    client: better-sqlite3
+    connection: ":memory:"
+    # client: pg
+    # connection:
+    #   host: ${POSTGRES_HOST}
+    #   port: ${POSTGRES_PORT}
+    #   user: ${POSTGRES_USER}
+    #   password: ${POSTGRES_PASSWORD}
+    # database: database #${POSTGRES_DATABASE}
     #   restart: unless-stopped
     # ensureExists: true
 
@@ -67,7 +72,7 @@ backend:
 
   cache:
     store: memory
-  
+
   reading:
     allow:
       - host: dev.azure.com
@@ -109,43 +114,27 @@ catalog:
   providers:
     microsoftGraphOrg:
       default:
-          tenantId: *tenantId
-          clientId: *clientId
-          clientSecret: *clientSecret
+        tenantId: *tenantId
+        clientId: *clientId
+        clientSecret: *clientSecret
 
   rules:
-    - allow: [Group, User, Plugin, Template, Component, System, API, Resource, Location]
+    - allow:
+        [
+          Group,
+          User,
+          Plugin,
+          Template,
+          Component,
+          System,
+          API,
+          Resource,
+          Location,
+        ]
 
   locations:
     - type: url
-      target: https://dev.azure.com/foster-devops/mayo-backstage/_git/backstage_catalog?path=/catalogCollection/fetch.yaml
-    
-    - type: url
-      target: https://github.com/MavenWave-DevOps/mayo-backstage-dev/blob/main/catalog-info.yaml
-
-    - type: url
-      target: https://dev.azure.com/foster-devops/mayo-backstage/_git/ex-template-a?path=/template.yaml
-      rules:
-        - allow: [Template]
-
-    - type: url
-      target: https://dev.azure.com/foster-devops/mayo-backstage/_git/ex-template-C?path=/template.yaml
-      rules: 
-        - allow: [Template]
-        
-    - type: url
-      target: https://dev.azure.com/foster-devops/mayo-backstage/_git/ex-template-B?path=/template.yaml
-      rules: 
-        - allow: [Template]
-        
-    - type: url
-      target: https://dev.azure.com/foster-devops/mayo-backstage/_git/ex-template-D?path=/template.yaml
-      rules: 
-        - allow: [Template]
-    - type: url
-      target: https://dev.azure.com/foster-devops/mayo-backstage/_git/ex_template_E?path=/template.yaml
-      rules: 
-        - allow: [Template]          
+      target: https://dev.azure.com/santoshhkumarr/reassert/_git/reassert?path=/catalogCollection/fetch.yaml
 
 costInsights:
   engineerCost: 200000
@@ -179,14 +168,20 @@ kubernetes:
   clusterLocatorMethods:
     - type: config
       clusters:
-        - url:  ${K8S_URL}
-          name: ${K8S_CLUSTER_NAME}
+        - url: 127.0.0.1:59646
+          name: minikube
           authProvider: serviceAccount
           skipTLSVerify: true
           skipMetricsLookup: true
-          serviceAccountToken: ${K8S_SA_TOKEN}
+          serviceAccountToken: ${K8S_TOKEN}
 
 azureDevOps:
-    host: dev.azure.com
-    token: ${AZURE_TOKEN}
-    organization: foster-devops
+  host: dev.azure.com
+  token: ${AZURE_TOKEN}
+  organization: santoshhkumarr
+
+rbac-plugin:
+  teams:
+    admin:
+      title: ado-dev-team
+      path: /admin
