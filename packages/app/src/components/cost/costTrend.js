@@ -13,7 +13,7 @@ const CostInsight = () => {
     useEffect(() => {
         const getData = async () => {
 
-            const url = 'https://bigquery.googleapis.com/bigquery/v2/projects/cedar-setup-394210/queries?access_token=' + apiKey
+            const url = 'https://bigquery.googleapis.com/bigquery/v2/projects/infra-billing/queries?access_token=' + apiKey
             // Query block
             try {
                 const response = await fetch(url, {
@@ -23,7 +23,7 @@ const CostInsight = () => {
                     },
                     body: JSON.stringify({
                         "query":
-                            "SELECT distinct billing.project.id,price.service.description,price.billing_account_price.tiered_rates[SAFE_OFFSET(0) ].start_usage_amount AS usage_amt FROM cedar-setup-394210.costtrend.cloud_pricing_export price, cedar-setup-394210.costtrend.gcp_billing_export_v1_018341_C12D96_C76360 billing WHERE price.billing_account_price.tiered_rates[SAFE_OFFSET(0) ].start_usage_amount is not null AND TIMESTAMP_TRUNC(billing._PARTITIONTIME, DAY) = TIMESTAMP(current_date('UTC')) ORDER BY usage_amt DESC LIMIT 5"
+                            "SELECT distinct billing.project.id,price.service.description,price.billing_account_price.tiered_rates[SAFE_OFFSET(0) ].start_usage_amount AS usage_amt FROM infra-billing.costtrend.cloud_pricing_export price, infra-billing.costtrend.gcp_billing_export_v1_018341_C12D96_C76360 billing WHERE price.billing_account_price.tiered_rates[SAFE_OFFSET(0) ].start_usage_amount is not null AND TIMESTAMP_TRUNC(billing._PARTITIONTIME, DAY) = TIMESTAMP(current_date('UTC')) ORDER BY usage_amt DESC LIMIT 5"
                         , "useLegacySql": false
                     }),
 
