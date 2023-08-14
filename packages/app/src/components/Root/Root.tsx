@@ -88,10 +88,10 @@ export const Root = ({ children }: PropsWithChildren<{}>) => (
   <SidebarPage>
     <Sidebar>
       <SidebarLogo />
-      
+
       <SidebarGroup label='Search' icon={<SearchIcon />} to='/search'>
         <SidebarSearchModal>
-           {({ toggleModal }) => <SearchModal toggleModal={toggleModal} />}
+          {({ toggleModal }) => <SearchModal toggleModal={toggleModal} />}
         </SidebarSearchModal>
 
       </SidebarGroup>
@@ -100,7 +100,7 @@ export const Root = ({ children }: PropsWithChildren<{}>) => (
       <SidebarGroup label='Menu' icon={<MenuIcon />}>
         {/* Global nav, not org-specific */}
         <SidebarItem icon={HomeIcon} to='/' text='Home'>
-        <SidebarSubmenu title="catalog">
+          <SidebarSubmenu title="catalog">
             <SidebarSubmenuItem
               title="Domains"
               to="catalog?filters[kind]=domain"
@@ -120,17 +120,17 @@ export const Root = ({ children }: PropsWithChildren<{}>) => (
               title="APIs"
               to="catalog?filters[kind]=api"
               icon={useApp().getSystemIcon('kind:api')}
-          />
-          
-           <SidebarDivider />
+            />
+
+            <SidebarDivider />
             <SidebarSubmenuItem
               title="Resources"
               to="catalog?filters[kind]=resource"
               icon={useApp().getSystemIcon('kind:resource')}
             />
-          <SidebarDivider />
-          
-           <SidebarSubmenuItem
+            <SidebarDivider />
+
+            <SidebarSubmenuItem
               title="Groups"
               to="catalog?filters[kind]=group"
               icon={useApp().getSystemIcon('kind:group')}
@@ -157,11 +157,11 @@ export const Root = ({ children }: PropsWithChildren<{}>) => (
           to="docs"
           text="Docs"
         />
-            
+
 
         {/* <SidebarItem icon={HomeIcon} to="/" text="Home" />    */}
-        
-        
+
+
         <SidebarItem icon={CategoryIcon} to="catalog" text="catalog" />
         <SidebarItem icon={LayersIcon} to="explore" text="Explore" />
         <SidebarItem icon={ExtensionIcon} to='api-docs' text='APIs' />

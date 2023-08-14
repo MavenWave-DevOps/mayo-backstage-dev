@@ -1,8 +1,8 @@
 import React from 'react';
-import { 
+import {
   // Navigate,
   Route
-  } from 'react-router';
+} from 'react-router';
 import { apiDocsPlugin, ApiExplorerPage } from '@backstage/plugin-api-docs';
 import {
   CatalogEntityPage,
@@ -28,10 +28,10 @@ import {
   TechDocsReaderPage,
 } from '@backstage/plugin-techdocs';
 import {
-  CostInsightsPage,
   CostInsightsProjectGrowthInstructionsPage,
   CostInsightsLabelDataflowInstructionsPage,
 } from '@backstage/plugin-cost-insights';
+// import { CostInsightsPage } from './costClient/CostInsightsPage'
 import { GraphiQLPage } from '@backstage/plugin-graphiql';
 import { darkTheme, lightTheme } from '@backstage/theme';
 import { mayoTheme } from './themes/mayo';
@@ -51,7 +51,6 @@ import { FlatRoutes } from '@backstage/core-app-api';
 import { RequirePermission } from '@backstage/plugin-permission-react';
 import { catalogEntityCreatePermission } from '@backstage/plugin-catalog-common/alpha';
 import { providers } from './components/signin/identityProviders';
-// import Login from './images/loginCover.png';
 import { HomepageCompositionRoot } from '@backstage/plugin-home';
 import { homePage } from './components/home/HomePage';
 import { ExplorePage } from '@backstage/plugin-explore';
@@ -67,6 +66,7 @@ import {
   RELATION_PART_OF,
   RELATION_PROVIDES_API,
 } from '@backstage/catalog-model';
+import CostInsight from './components/cost/costTrend';
 import { InputListExtension } from './scaffolder/InputList';
 
 const app = createApp({
@@ -77,10 +77,10 @@ const app = createApp({
         <SignInPage
           {...props}
           providers={['guest', ...providers]}
-          
+
           align="center"
         />
-        
+
       );
     },
   },
@@ -154,7 +154,9 @@ const routes = (
     >
       {entityPage}
     </Route>
-    <Route path="/cost-insights" element={<CostInsightsPage />} />
+
+
+    <Route path="/cost-insights" element={<CostInsight />} />
     <Route
       path="/cost-insights/investigating-growth"
       element={<CostInsightsProjectGrowthInstructionsPage />}
@@ -163,6 +165,8 @@ const routes = (
       path="/cost-insights/labeling-jobs"
       element={<CostInsightsLabelDataflowInstructionsPage />}
     />
+
+
     <Route path="/docs" element={<TechDocsIndexPage />} />
     <Route
       path="/docs/:namespace/:kind/:name/*"
@@ -173,8 +177,7 @@ const routes = (
       </TechDocsAddons>
     </Route>
     <Route path="/graphiql" element={<GraphiQLPage />} />
-
-    <Route path="/my-plugin" element={<EntityMyPluginContent />}/>
+    <Route path="/my-plugin" element={<EntityMyPluginContent />} />
 
     <Route path="/create" element={<ScaffolderPage />}>
       <ScaffolderFieldExtensions>
@@ -199,7 +202,7 @@ const routes = (
     </Route>
     <Route path="/settings" element={<UserSettingsPage />} />
 
-       <Route path="/catalog-graph" element={<CatalogGraphPage
+    <Route path="/catalog-graph" element={<CatalogGraphPage
       initialState={{
         selectedKinds: ['component', 'domain', 'system', 'api', 'group'],
         selectedRelations: [
@@ -223,19 +226,18 @@ const routes = (
     <Route path="/catalog-graph" element={<CatalogGraphPage />} />
     <Route path="/my-plugin" element={<EntityMyPluginContent />} />
 
-    
+
   </FlatRoutes>
 );
 
 const App = () => (
   <AppProvider>
     <div className='loginContainer'>
-    {/* <img src={Login} alt="Image" width="90%" height="400" className='loginBanner' /> */}
-    <AlertDisplay />
-    <OAuthRequestDialog />
-    <AppRouter>
-      <Root>{routes}</Root>
-    </AppRouter>
+      <AlertDisplay />
+      <OAuthRequestDialog />
+      <AppRouter>
+        <Root>{routes}</Root>
+      </AppRouter>
     </div>
   </AppProvider>
 );
