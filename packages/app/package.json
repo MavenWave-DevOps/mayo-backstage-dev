@@ -58,6 +58,7 @@
     "@material-ui/icons": "^4.9.1",
     "@roadiehq/backstage-plugin-argo-cd": "^2.2.13",
     "apexcharts": "^3.41.0",
+    "backstage-plugin-costinsight": "^0.1.0",
     "dotenv": "^16.3.1",
     "formik": "^2.4.1",
     "history": "^5.0.0",

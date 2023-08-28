@@ -5,7 +5,8 @@ import { env } from 'process';
 
 
 const CostInsight = () => {
-    const apiKey = process.env.APP_CONFIG[0].data.auth.environment
+    const apiKey = process.env.APP_CONFIG[0]
+    console.log('AAJA RE', apiKey)
     var projectId = []
     var usage_amount = []
     var service_description = []
@@ -259,4 +260,4 @@ function convertSchema(schema, rows) {
     return resultRows
 };
 /**
- * process response end*/ 
+ * process response end*/

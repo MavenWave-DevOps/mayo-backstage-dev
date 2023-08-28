@@ -27,11 +27,7 @@ import {
   techdocsPlugin,
   TechDocsReaderPage,
 } from '@backstage/plugin-techdocs';
-import {
-  CostInsightsProjectGrowthInstructionsPage,
-  CostInsightsLabelDataflowInstructionsPage,
-} from '@backstage/plugin-cost-insights';
-// import { CostInsightsPage } from './costClient/CostInsightsPage'
+
 import { GraphiQLPage } from '@backstage/plugin-graphiql';
 import { darkTheme, lightTheme } from '@backstage/theme';
 import { mayoTheme } from './themes/mayo';
@@ -68,6 +64,7 @@ import {
 } from '@backstage/catalog-model';
 import CostInsight from './components/cost/costTrend';
 import { InputListExtension } from './scaffolder/InputList';
+import { BgcostinsightPage } from 'backstage-plugin-costinsight';
 
 const app = createApp({
   apis,
@@ -157,15 +154,6 @@ const routes = (
 
 
     <Route path="/cost-insights" element={<CostInsight />} />
-    <Route
-      path="/cost-insights/investigating-growth"
-      element={<CostInsightsProjectGrowthInstructionsPage />}
-    />
-    <Route
-      path="/cost-insights/labeling-jobs"
-      element={<CostInsightsLabelDataflowInstructionsPage />}
-    />
-
 
     <Route path="/docs" element={<TechDocsIndexPage />} />
     <Route
@@ -181,7 +169,7 @@ const routes = (
 
     <Route path="/create" element={<ScaffolderPage />}>
       <ScaffolderFieldExtensions>
-        <InputListExtension/>
+        <InputListExtension />
       </ScaffolderFieldExtensions>
     </Route>
     <Route path="/api-docs" element={<ApiExplorerPage />} />
@@ -217,7 +205,6 @@ const routes = (
           RELATION_DEPENDS_ON,
           RELATION_DEPENDENCY_OF,
 
-
         ],
       }}
 
@@ -227,6 +214,7 @@ const routes = (
     <Route path="/my-plugin" element={<EntityMyPluginContent />} />
 
 
+    <Route path="/bgcostinsight" element={<BgcostinsightPage />} />
   </FlatRoutes>
 );
 

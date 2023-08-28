@@ -35,6 +35,7 @@ import { PluginEnvironment } from './types';
 import { ServerPermissionClient } from '@backstage/plugin-permission-node';
 import { DefaultIdentityClient } from '@backstage/plugin-auth-node';
 import explore from './plugins/explore';
+import bigqueryapi from './plugins/bigqueryapi';
 
 function makeCreateEnv(config: Config) {
   const root = getRootLogger();
@@ -42,7 +43,7 @@ function makeCreateEnv(config: Config) {
   const discovery = SingleHostDiscovery.fromConfig(config);
   const cacheManager = CacheManager.fromConfig(config);
   const databaseManager = DatabaseManager.fromConfig(config, { logger: root });
-  const tokenManager = ServerTokenManager.fromConfig(config, { logger: root});
+  const tokenManager = ServerTokenManager.fromConfig(config, { logger: root });
   const taskScheduler = TaskScheduler.fromConfig(config);
 
   const identity = DefaultIdentityClient.create({
@@ -93,6 +94,7 @@ async function main() {
   const azureDevOpsEnv = useHotMemoize(module, () => createEnv('azure-devops'));
   const permissionEnv = useHotMemoize(module, () => createEnv('permission'));
   const exploreEnv = useHotMemoize(module, () => createEnv('explore'));
+  const bigqueryapiPluginEnv = useHotMemoize(module, () => createEnv('bigqueryapi-plugin'))
 
   const apiRouter = Router();
   apiRouter.use('/catalog', await catalog(catalogEnv));
@@ -105,6 +107,7 @@ async function main() {
   apiRouter.use('/azure-devops', await azureDevOps(azureDevOpsEnv));
   apiRouter.use('/permission', await permission(permissionEnv));
   apiRouter.use('/explore', await explore(exploreEnv));
+  apiRouter.use('/bigqueryapi', await bigqueryapi(bigqueryapiPluginEnv));
 
   // Add backends ABOVE this line; this 404 handler is the catch-all fallback
   apiRouter.use(notFoundHandler());
