@@ -19,6 +19,14 @@ export class bigqueryClient implements costinsightApi {
         return await response.json();
     }
     async getHealth(): Promise<{ status: string; }> {
+        const url = `${await this.discoveryApi.getBaseUrl('bigqueryapi')}/health`;
+        const response = await fetch(url, {
+            method: 'GET',
+        });
+        return await this.handleResponse(response);
+    }
+
+    async getResponseData(): Promise<{ responsedata: [] }> {
         const url = `${await this.discoveryApi.getBaseUrl('bigqueryapi')}/dataset`;
         const response = await fetch(url, {
             method: 'GET',

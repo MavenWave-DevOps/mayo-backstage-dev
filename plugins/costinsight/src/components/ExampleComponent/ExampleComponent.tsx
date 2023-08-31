@@ -64,34 +64,55 @@ import React, { useEffect, useState } from "react";
 import { useApi } from "@backstage/core-plugin-api";
 
 import { costinsightApiRef } from "../../api";
+import { convertSchema } from "../../hooks/utility";
 
 export const ExampleComponent = () => {
+
   const bgCostApi = useApi(costinsightApiRef);
   const [status, setStatus] = useState<string>('');
+  const [responsedata, setResponseData] = useState<any>({});
 
   useEffect(() => {
     const fetchbgCostdata = async () => {
       try {
         const data = await bgCostApi.getHealth();
-        // const health = await bgCostApi.getHealth();
-        console.log('DATA-RE', data)
+        const bgresponse = await bgCostApi.getResponseData();
+
+        setResponseData(bgresponse);
+
         setStatus(data.status);
       }
       catch (error) {
         console.error('ERROR FETCHING BIGQUERY API', error);
       }
+
     };
+
     fetchbgCostdata();
+
   }, []);
 
+  // const sschema = responsedata['responseData']['schema'];
+  // // var ssrows = responsedata['responseData'];
+  // console.log('Experimental Schema', sschema);
+  // // console.log('Experimental Rows', ssrows);
+  console.log('RESPONSE-DATA', responsedata);
+  const rrows = convertSchema(responsedata["responseData"]["schema"]["fields"], responsedata["responseData"]["rows"]);
+  console.log('CONVERTED', rrows);
+
   return (
+
     <div>
-      {status ? (
+      {responsedata ? (
         <div>
-          <h1>BG BACKEND PLUGIN API</h1>
-          <p>status: {status}</p>
+          <h1>BG BACKEND DATASET PLUGIN API</h1>
+          <p>sankd: {responsedata.length
+
+          }</p>
         </div>
+
       ) : (<p>status: health</p>)}
     </div>
   );
 };
+

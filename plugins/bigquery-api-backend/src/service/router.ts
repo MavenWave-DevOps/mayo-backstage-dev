@@ -31,14 +31,15 @@ export async function createRouter(
     const { configId } = request.params;
     logger.info("biquery configuration");
     const readConfig = config.getOptionalString(`bigquery.${configId}`);
-    console.log('READCON', readConfig);
     response.send({ response: readConfig });
   });
 
   const readAppConfig = config.getConfig('bigqueryapi');
   const projectId = readAppConfig.getString('projectId');
+  // var responseData = []
 
   router.get('/dataset', async (_, response) => {
+
     const { JWT } = require('google-auth-library');
     const keys = require('../config/cedar-setup.json');
     const client = new JWT({
@@ -58,7 +59,7 @@ export async function createRouter(
         , "useLegacySql": false
       }),
     });
-    response.json({ response: res.data })
+    response.json({ responseData: res.data })
   });
 
   router.use(errorHandler());

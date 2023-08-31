@@ -28,6 +28,10 @@ class MockcostInsightClient implements costinsightApi {
   async getHealth(): Promise<{ status: string; }> {
     return { status: 'OK' };
   }
+  async getResponseData(): Promise<{ responsedata: [] }> {
+    return { responsedata: [] };
+  }
+
 }
 
 createDevApp()
