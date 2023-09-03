@@ -51,7 +51,7 @@ export const CostGraph = () => {
         },
         title: {
             floating: false,
-            text: 'MCCP- Cost Analysis (March-2023 - March 2024)',
+            text: 'MCCP- Cost Analysis (GCP)',
             align: 'center',
             offsetX: 90,
             style: {

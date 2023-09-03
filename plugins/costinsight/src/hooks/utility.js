@@ -1,3 +1,8 @@
+
+/*****************DO NOT EDIT CONTENT IN THIS FILE **************/
+
+import { Grid, Card, CardContent, makeStyles } from "@material-ui/core";
+
 /**
  *  process response */
 
@@ -109,3 +114,33 @@ export const withKeyObject = (input, keyName) => {
     }
     return result;
 };
+
+/**
+ * Chart Style Properties
+ */
+export const useStyles = makeStyles((theme) => ({
+    container: {
+        backgroundColor: "grey"
+    },
+    item: {
+        width: "100%"
+    },
+    charts: {
+        flexDirection: "column"
+    },
+    card: {
+        height: "100%"
+    },
+    content: {
+        height: "100%",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center"
+    },
+    chartWrapper: {
+        width: "95%",
+        height: "100%",
+        overflow: "hidden"
+    }
+}));
+
