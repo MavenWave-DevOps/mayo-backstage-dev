@@ -78,7 +78,7 @@ const CostInsight = () => {
         },
         title: {
             floating: false,
-            text: 'Cost Trend Year - (March-2023 - March 2024)',
+            text: 'Cost Trend Year - (2023 - 2024)',
             align: 'center',
             offsetX: 90,
             style: {
@@ -131,7 +131,7 @@ const CostInsight = () => {
     const classes = useStyles();
     return (
         <Page themeId="tool">
-            <Header title="MCCP Cloud Expense Summary" subtitle="2023-2024" >
+            <Header title="MCCP Cloud Expense Summary" subtitle="(Google Cloud Environment)" >
                 <HeaderLabel label="PROJECT" value={projectId} />
             </Header>
             <Content>

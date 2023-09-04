@@ -214,7 +214,7 @@ const routes = (
     <Route path="/my-plugin" element={<EntityMyPluginContent />} />
 
 
-    <Route path="/bgcostinsight" element={<BgcostinsightPage />} />
+    {/* <Route path="/bgcostinsight" element={<BgcostinsightPage />} />   un-comment for other cloud provider integration  */}
   </FlatRoutes>
 );
 

@@ -175,7 +175,7 @@ export const Root = ({ children }: PropsWithChildren<{}>) => (
         <SidebarDivider />
       </SidebarGroup>
       <SidebarItem icon={MoneyIcon} to="cost-insights" text="Cost Insights" />
-      <SidebarItem icon={MoneyIcon} to="bgcostinsight" text="BG Cost Insights" />
+      {/* <SidebarItem icon={MoneyIcon} to="bgcostinsight" text="BG Cost Insights" /> Un-comment when other cloud provider integrates */}
       <SidebarItem icon={GraphiQLIcon} to="graphiql" text="GraphiQL" />
       <SidebarItem icon={Score} to="score-board" text="Score board" />
       <SidebarSpace />
