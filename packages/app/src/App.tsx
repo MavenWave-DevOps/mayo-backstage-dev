@@ -64,7 +64,7 @@ import {
 } from '@backstage/catalog-model';
 import CostInsight from './components/cost/costTrend';
 import { InputListExtension } from './scaffolder/InputList';
-import { BgcostinsightPage } from 'backstage-plugin-costinsight';
+
 
 const app = createApp({
   apis,
@@ -212,9 +212,6 @@ const routes = (
 
     <Route path="/catalog-graph" element={<CatalogGraphPage />} />
     <Route path="/my-plugin" element={<EntityMyPluginContent />} />
-
-
-    {/* <Route path="/bgcostinsight" element={<BgcostinsightPage />} />   un-comment for other cloud provider integration  */}
   </FlatRoutes>
 );
 

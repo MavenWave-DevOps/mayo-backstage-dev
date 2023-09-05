@@ -1,11 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { useApi } from "@backstage/core-plugin-api";
-import { costinsightApiRef } from "../../api";
 import { convertSchema } from "../../hooks/utility";
 
 export const ExampleComponent = () => {
 
-  const bgCostApi = useApi(costinsightApiRef);
+  // const bgCostApi = useApi(costinsightApiRef);
   const [responsedata, setResponseData] = useState<any>({});
   // var projectId = []
   let usage_amount: any = []
