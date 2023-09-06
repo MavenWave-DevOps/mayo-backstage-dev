@@ -1,0 +1,1 @@
+export { CostapiComponent } from './CostapiComponent';

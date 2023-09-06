@@ -26,7 +26,7 @@ export const BgcostinsightPage = costinsightPlugin.provide(
   createRoutableExtension({
     name: 'BgcostinsightPage',
     component: () =>
-      import('./components/ExampleComponent').then(m => m.ExampleComponent),
+      import('./components/CostapiComponent').then(m => m.CostapiComponent),
     mountPoint: rootRouteRef,
   }),
 );

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { convertSchema } from "../../hooks/utility";
 
-export const ExampleComponent = () => {
+export const CostapiComponent = () => {
 
   // const bgCostApi = useApi(costinsightApiRef);
   const [responsedata, setResponseData] = useState<any>({});

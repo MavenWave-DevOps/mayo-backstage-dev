@@ -1,11 +1,11 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
-import { ExampleFetchComponent } from './ExampleFetchComponent';
+import { CostapiFetchComponent } from './CostapiFetchComponent';
 import { rest } from 'msw';
 import { setupServer } from 'msw/node';
 import { setupRequestMockHandlers } from '@backstage/test-utils';
 
-describe('ExampleFetchComponent', () => {
+describe('CostapiFetchComponent', () => {
   const server = setupServer();
   // Enable sane handlers for network requests
   setupRequestMockHandlers(server);
@@ -19,7 +19,7 @@ describe('ExampleFetchComponent', () => {
     );
   });
   it('should render', async () => {
-    await render(<ExampleFetchComponent />);
+    await render(<CostapiFetchComponent />);
     expect(await screen.findByTestId('progress')).toBeInTheDocument();
   });
 });
