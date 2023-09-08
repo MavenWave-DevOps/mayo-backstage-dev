@@ -1,10 +1,5 @@
 
-/*****************DO NOT EDIT CONTENT IN THIS FILE **************/
-
 import { Grid, Card, CardContent, makeStyles } from "@material-ui/core";
-
-/**
- *  process response */
 
 export function convertSchema(schema, rows) {
 
@@ -69,23 +64,15 @@ export function convertSchema(schema, rows) {
     }
     return resultRows
 };
-/**
- * process response end*/
 
-/**
- * Object Data converstion utility method 
- * @param {*} input must be Object
- * @returns 
- */
-
-export const withoutKeyObject = (input) => {
+export const convertWithoutKey = (input) => {
     let result = {};
     for (const key in input) {
         if (!input.hasOwnProperty(key)) {
             continue;
         }
         if (typeof input[key] === "object" && !Array.isArray(input[key])) {
-            var subFlatObject = withoutKeyObject(input[key]);
+            var subFlatObject = convertWithoutKey(input[key]);
             for (const subkey in subFlatObject) {
                 result[key + "_" + subkey] = subFlatObject[subkey];
             }
@@ -96,28 +83,6 @@ export const withoutKeyObject = (input) => {
     return result;
 }
 
-/**
- * Object Data converstion utility method!
- * @param {*} input must be data Object
- * @param {*} keyName must be the specific key which we need to retrieve the values
- * @returns 
- */
-export const withKeyObject = (input, keyName) => {
-    var result = {};
-    for (const key in input) {
-        const newKey = keyName ? `${keyName}_${key}` : key;
-        if (typeof input[key] === "object" && !Array.isArray(input[key])) {
-            result = { ...result, ...withKeyObject(input[key], newKey) }
-        } else {
-            result[newKey] = input[key];
-        }
-    }
-    return result;
-};
-
-/**
- * Chart Style Properties
- */
 export const useStyles = makeStyles((theme) => ({
     container: {
         backgroundColor: "grey"
