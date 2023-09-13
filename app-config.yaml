@@ -179,3 +179,7 @@ azureDevOps:
     host: dev.azure.com
     token: ${AZURE_TOKEN}
     organization: foster-devops
+
+bigqueryapi:
+  projectId: infra-billing
+  gbdataSet: cloud_pricing_export
