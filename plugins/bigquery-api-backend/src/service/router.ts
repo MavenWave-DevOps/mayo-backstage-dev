@@ -36,7 +36,7 @@ export async function createRouter(
 
   const readAppConfig = config.getConfig('bigqueryapi');
   const projectId = readAppConfig.getString('projectId');
-  // var responseData = []
+  const gbdataset = readAppConfig.getString('gbdataSet');
 
   router.get('/dataset', async (_, response) => {
 
@@ -55,7 +55,7 @@ export async function createRouter(
       },
       body: JSON.stringify({
         "query":
-          `SELECT distinct billing.project.id,price.service.description,price.billing_account_price.tiered_rates[SAFE_OFFSET(0) ].start_usage_amount AS usage_amt FROM ${projectId}.costtrend.cloud_pricing_export price, ${projectId}.costtrend.gcp_billing_export_v1_018341_C12D96_C76360 billing WHERE price.billing_account_price.tiered_rates[SAFE_OFFSET(0) ].start_usage_amount is not null AND TIMESTAMP_TRUNC(billing._PARTITIONTIME, DAY) = TIMESTAMP(current_date('UTC')) ORDER BY usage_amt DESC LIMIT 5`
+          `SELECT distinct billing.project.id,price.service.description,price.billing_account_price.tiered_rates[SAFE_OFFSET(0) ].start_usage_amount AS usage_amt FROM ${projectId}.${gbdataset}.cloud_pricing_export price, ${projectId}.${gbdataset}.gcp_billing_export_v1_018341_C12D96_C76360 billing WHERE price.billing_account_price.tiered_rates[SAFE_OFFSET(0) ].start_usage_amount is not null AND TIMESTAMP_TRUNC(billing._PARTITIONTIME, DAY) = TIMESTAMP(current_date('UTC')) ORDER BY usage_amt DESC LIMIT 5`
         , "useLegacySql": false
       }),
     });
