@@ -47,7 +47,7 @@ export async function createRouter(
       scopes: scopes
     });
     const client = await auth.getClient();
-    let targetPrincipal = 'googlebigquery@cedar-setxxxxxx.iam.gserviceaccount.com'
+    let targetPrincipal = 'cost-insights-sa@infra-billing.iam.gserviceaccount.com'
 
     const targetClient = new Impersonated({
       sourceClient: client,
