@@ -78,23 +78,23 @@ const CostInsight = () => {
         },
         title: {
             floating: false,
-            text: 'Cost Trend Year - (2023 - 2024)',
+            text: 'Cost Trend Month - (SEP - 2023)',
             align: 'center',
             offsetX: 90,
             style: {
                 fontSize: '18px'
             }
         },
-        // subtitle: {
-        //     text: projectId,
-        //     align: 'center',
-        //     margin: 5,
-        //     offsetY: 40,
-        //     style: {
-        //         color: '#df6124',
-        //         fontSize: '14px',
-        //     }
-        // },
+        subtitle: {
+            text: projectId,
+            align: 'center',
+            margin: 5,
+            offsetY: 40,
+            style: {
+                color: '#df6124',
+                fontSize: '14px',
+            }
+        },
         dataLabels: {
             formatter: (val) => { return val / 1000 + "$" }
         },
