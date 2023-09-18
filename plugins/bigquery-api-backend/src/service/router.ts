@@ -65,8 +65,8 @@ export async function createRouter(
       },
       body: JSON.stringify({
         "query":
-          `SELECT distinct billing.project.id,price.service.description,price.billing_account_price.tiered_rates[SAFE_OFFSET(0) ].start_usage_amount AS usage_amt FROM ${projectId}.${gbdataset}.cloud_pricing_export price, ${projectId}.${gbdataset}.gcp_billing_export_v1_018341_C12D96_C76360 billing WHERE price.billing_account_price.tiered_rates[SAFE_OFFSET(0) ].start_usage_amount is not null AND TIMESTAMP_TRUNC(billing._PARTITIONTIME, DAY) = TIMESTAMP(current_date('UTC')) ORDER BY usage_amt DESC LIMIT 5`
-        , "useLegacySql": false
+          `SELECT invoice.month, service.description, project.id SUM(cost) + SUM(IFNULL((SELECT SUM(c.amount) FROM UNNEST(credits) c), 0)) AS total, (SUM(CAST(cost AS NUMERIC)) + SUM(IFNULL((SELECT SUM(CAST(c.amount AS NUMERIC)) FROM UNNEST(credits) AS c), 0))) AS usage_amt FROM ${projectId}.${gbdataset}.gcp_billing_export_v1_0105E1_61A6DE_D85D10 where project.id = 'mw-infra-shared-services' and TIMESTAMP_TRUNC(_PARTITIONTIME, DAY) = TIMESTAMP(current_date('UTC')) GROUP BY 1, 2, 3 ORDER BY 1 ASC, 2 ASC`,
+        "useLegacySql": false
       }),
     });
     response.json({ responseData: res.data })
