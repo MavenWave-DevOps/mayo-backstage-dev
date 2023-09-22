@@ -26,26 +26,6 @@ export async function createRouter(
     response.send({ Azuretoken: Azuretoken });
   });
 
-  const axios = require('axios');
-  router.get('/data', (_, response) => {
-    logger.info('data');
-    
-    const Azuretoken  = config.getOptionalString(`azureDevOps.token`) as string;
-    const specialcharacter=':';
-    const azuretoken= specialcharacter.concat(Azuretoken);
-    const Basic:string='Basic '
-    const  Authorization=Basic.concat((btoa(azuretoken)));
-     console.log(Authorization);
-      
-    
-        
-
-        response.send();
-  });
-
-
-  
-
 
   router.use(errorHandler());
   return router;
