@@ -36,6 +36,7 @@ import { ServerPermissionClient } from '@backstage/plugin-permission-node';
 import { DefaultIdentityClient } from '@backstage/plugin-auth-node';
 import explore from './plugins/explore';
 import bigqueryapi from './plugins/bigqueryapi';
+import prepopulatetemplate from './plugins/prepopulatetemplate';
 
 function makeCreateEnv(config: Config) {
   const root = getRootLogger();
@@ -95,7 +96,7 @@ async function main() {
   const permissionEnv = useHotMemoize(module, () => createEnv('permission'));
   const exploreEnv = useHotMemoize(module, () => createEnv('explore'));
   const bigqueryapiPluginEnv = useHotMemoize(module, () => createEnv('bigqueryapi-plugin'))
-
+  const prepopulatetemplateEnV = useHotMemoize(module, () => createEnv('prepopulatetemplate'))
   const apiRouter = Router();
   apiRouter.use('/catalog', await catalog(catalogEnv));
   apiRouter.use('/scaffolder', await scaffolder(scaffolderEnv));
@@ -108,6 +109,7 @@ async function main() {
   apiRouter.use('/permission', await permission(permissionEnv));
   apiRouter.use('/explore', await explore(exploreEnv));
   apiRouter.use('/bigqueryapi', await bigqueryapi(bigqueryapiPluginEnv));
+  apiRouter.use('/prepopulatetemplate',await prepopulatetemplate(prepopulatetemplateEnV))
 
   // Add backends ABOVE this line; this 404 handler is the catch-all fallback
   apiRouter.use(notFoundHandler());

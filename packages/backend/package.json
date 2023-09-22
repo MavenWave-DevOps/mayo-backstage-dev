@@ -49,6 +49,7 @@
     "app": "link:../app",
     "azure-devops-node-api": "^12.0.0",
     "backstage-plugin-bigquery-api-backend": "^0.1.0",
+    "backstage-plugin-pre-populate-template-backend": "^0.1.0",
     "better-sqlite3": "^7.5.0",
     "dockerode": "^3.3.1",
     "express": "^4.17.1",
