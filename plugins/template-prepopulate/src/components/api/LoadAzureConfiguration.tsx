@@ -1,9 +1,9 @@
 // import React from 'react'
 
-export const LoadAzureConfiguration = async () => {
+export const LoadAzureConfiguration = async (base:string) => {
     
-  
-    const    tokenresponse= await fetch('http://localhost:7007/api/prepopulatetemplate/azuretoken');
+    const url=base.concat('/api/prepopulatetemplate/azuretoken');
+    const    tokenresponse= await fetch(url);
     const   responsejson = await tokenresponse.json();
     
     const specialcharacter=':';

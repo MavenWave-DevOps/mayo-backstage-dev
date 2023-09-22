@@ -10,9 +10,11 @@ import { Grid,
    LinearProgress} from '@mui/material'
 import  LoadApiData from '../api/LoadApiData';
 import { LoadAzureConfiguration } from '../api/LoadAzureConfiguration';
+import { useApi, configApiRef } from '@backstage/core-plugin-api';
 
-export const  handleClick =async (link:string) => { 
-  const requestOptions= await LoadAzureConfiguration();
+export const  handleClick =async (link:string,base:string,appurl:string) => { 
+
+  const requestOptions= await LoadAzureConfiguration(base);;
 
   console.log(link);
    const response= await fetch(link,requestOptions);
@@ -22,17 +24,20 @@ export const  handleClick =async (link:string) => {
     const doc = yaml.load(result,'utf8');
   const myJSON :string = JSON.stringify(doc.values);
   console.log(myJSON);
-   const url:string=`http://localhost:3000/create/templates/default/${doc.name}?formData=${encodeURIComponent(myJSON)}`
-   console.log(url);
-  window.open(url);
+  const populate_template_url=appurl.concat(`/create/templates/default/${doc.name}?formData=${encodeURIComponent(myJSON)}`);
+   
+   console.log(populate_template_url);
+  window.open(populate_template_url);
    
   };
 
 
   
 export const PrepopulateTemplateComponent = () => {
-
-const response=  LoadApiData() ; 
+  const config = useApi(configApiRef);
+  const baseurl=config.getOptionalString('backend.baseUrl') as string;
+  const appurl=config.getOptionalString('app.baseUrl') as string;
+const response=  LoadApiData(baseurl) ; 
 const data:any =response.data;
 console.log(data);
 
@@ -52,7 +57,7 @@ return (
             <Typography variant='h5'>{data.relativePath}</Typography>
             </CardContent>
            <CardActions>
-               <Button size='small'  onClick={()=>handleClick(data.url)}  >PrePopulate template</Button>
+               <Button size='small'  onClick={()=>handleClick(data.url,baseurl,appurl)}  >PrePopulate template</Button>
            </CardActions>
             </Card> </Box>
              </Grid>)

@@ -6,14 +6,14 @@ import {
 
 import { LoadAzureConfiguration } from "./LoadAzureConfiguration";
 
-const LoadApiData = () => {
+const LoadApiData = (base:string) => {
   const [data, setdata] = useState(null);
   const [pending, setpending] = useState(true);
   const [err, seterr] = useState < string | null > (null);
   useEffect(() => {
       const fetchData = async () => {
-      
-           const requestOptions= await LoadAzureConfiguration();
+           console.log(base);
+           const requestOptions= await LoadAzureConfiguration(base);
 
           let result: any;
           let newresult: any;

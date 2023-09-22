@@ -26,38 +26,22 @@ export async function createRouter(
     response.send({ Azuretoken: Azuretoken });
   });
 
-
-  // router.get('/data', (_, response) => {
-  //   logger.info('data');
+  const axios = require('axios');
+  router.get('/data', (_, response) => {
+    logger.info('data');
     
-  //   const Azuretoken  = config.getOptionalString(`azureDevOps.token`) as string;
-  //   // const specialcharacter=':';
-  //   // const azuretoken= specialcharacter.concat(Azuretoken);
-  //   // const Basic:string='Basic '
-  //   // const  Authorization=Basic.concat((btoa(azuretoken)));
-  //   //  console.log(Authorization);
+    const Azuretoken  = config.getOptionalString(`azureDevOps.token`) as string;
+    const specialcharacter=':';
+    const azuretoken= specialcharacter.concat(Azuretoken);
+    const Basic:string='Basic '
+    const  Authorization=Basic.concat((btoa(azuretoken)));
+     console.log(Authorization);
       
-  //   //     const requestOptions = {
-  //   //         method: 'GET',
-  //   //         headers: {
-  //   //           "Authorization" :Authorization,
-  //   //         }
-  //   //     };
-
-  //        let result: any;
-  //   //     let newresult: any;
+    
         
-  //       // const response2:any =   fetch('https://jsonplaceholder.typicode.com/users');
-  //       // try {
-  //       //     result =  response2.json();
-  //       // } catch (err) {
-             
-  //       //   response.send(response);
-            
-  //       // }
 
-  //       response.send(result);
-  // });
+        response.send();
+  });
 
 
   
