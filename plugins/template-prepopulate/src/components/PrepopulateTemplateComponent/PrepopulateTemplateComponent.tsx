@@ -9,15 +9,27 @@ import { Grid,
    Typography, 
    LinearProgress} from '@mui/material'
 import  LoadApiData from '../api/LoadApiData';
-import { LoadAzureConfiguration } from '../api/LoadAzureConfiguration';
+
 import { useApi, configApiRef } from '@backstage/core-plugin-api';
 
 export const  handleClick =async (link:string,base:string,appurl:string) => { 
-
-  const requestOptions= await LoadAzureConfiguration(base);;
-
   console.log(link);
-   const response= await fetch(link,requestOptions);
+
+  const raw = JSON.stringify({
+    "url": link
+  });
+
+  const  myHeaders = new Headers();
+  myHeaders.append("Content-Type", "application/json");
+
+  var requestOptions = {
+    method: 'POST',
+    headers: myHeaders,
+    body: raw,
+
+  };
+  
+   const response= await fetch(base+"/api/prepopulatetemplate/downloadyaml",requestOptions);
     const result = await response.text();
     console.log(result);
   const yaml = require('js-yaml');
