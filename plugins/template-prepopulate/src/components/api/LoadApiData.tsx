@@ -14,7 +14,7 @@ const LoadApiData = (base:string) => {
       const fetchData = async () => {
           let newresult: any;
           const url = base+"/api/prepopulatetemplate/data"
-          console.log(url);
+          
           if (url !== undefined) {
               const newresponse = await fetch(url);
               try {

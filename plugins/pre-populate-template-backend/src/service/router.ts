@@ -38,8 +38,7 @@ export async function createRouter(
      const azuretoken= specialcharacter.concat(Azuretoken);
       const Basic:string='Basic '
      const  Authorization=Basic.concat((btoa(azuretoken)));
-     console.log("base 64 hashed token "+  
-     Authorization);
+     
          const requestOptions = {
            method:"GET",
            redirect: "follow",
@@ -67,8 +66,7 @@ export async function createRouter(
     const azuretoken= specialcharacter.concat(Azuretoken);
     const Basic:string='Basic '
     const  Authorization=Basic.concat((btoa(azuretoken)));
-    console.log("base 64 hashed token "+  
-    Authorization);
+  
         const requestOptions = {
           method:"GET",
           redirect: "follow",
@@ -89,7 +87,7 @@ export async function createRouter(
         }
 
         const url = result?.value[0]?._links?.tree?.href;
-        console.log(url);
+     
 
         let newresult: any;
         let data;

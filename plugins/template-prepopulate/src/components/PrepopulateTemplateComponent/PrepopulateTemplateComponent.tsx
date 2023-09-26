@@ -13,7 +13,7 @@ import  LoadApiData from '../api/LoadApiData';
 import { useApi, configApiRef } from '@backstage/core-plugin-api';
 
 export const  handleClick =async (link:string,base:string,appurl:string) => { 
-  console.log(link);
+  
 
   const raw = JSON.stringify({
     "url": link
@@ -31,14 +31,14 @@ export const  handleClick =async (link:string,base:string,appurl:string) => {
   
    const response= await fetch(base+"/api/prepopulatetemplate/downloadyaml",requestOptions);
     const result = await response.text();
-    console.log(result);
+    
    const yaml = require('js-yaml');
     const doc = yaml.load(result,'utf8');
   const myJSON :string = JSON.stringify(doc.values);
-  console.log(myJSON);
+  
   const populate_template_url=appurl.concat(`/create/templates/default/${doc.name}?formData=${encodeURIComponent(myJSON)}`);
    
-   console.log(populate_template_url);
+   
   window.open(populate_template_url);
    
   };
@@ -51,7 +51,7 @@ export const PrepopulateTemplateComponent = () => {
   const appurl=config.getOptionalString('app.baseUrl') as string;
 const response=  LoadApiData(baseurl) ; 
 const data:any =response.data;
-console.log(data);
+
 
 return (   
 <div>
