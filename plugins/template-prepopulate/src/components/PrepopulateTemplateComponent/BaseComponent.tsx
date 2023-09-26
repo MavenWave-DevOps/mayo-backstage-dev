@@ -4,10 +4,7 @@ import {
   Header,
   Page,
   Content,
-  HeaderLabel,
   ContentHeader,
-  SupportButton,
-  InfoCard,
 } from '@backstage/core-components';
 import { PrepopulateTemplateComponent } from './PrepopulateTemplateComponent';
 

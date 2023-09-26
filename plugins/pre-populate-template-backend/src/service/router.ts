@@ -17,16 +17,12 @@ export interface RouterOptions {
 export async function createRouter(
   options: RouterOptions,
 ): Promise<express.Router> {
-  const { logger, config } = options;
+  const {  config } = options;
   const router = Router();
 
   router.use(express.json());
 
-  // router.get('/azuretoken', async(_, response) => {
-  //   logger.info('Azure-token');
-  //   const Azuretoken  = config.getOptionalString(`azureDevOps.token`);
-  //   response.send({ Azuretoken: Azuretoken });
-  // });
+
 
 
   router.post('/downloadyaml', async(request, response) => {
