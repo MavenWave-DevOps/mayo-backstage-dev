@@ -32,7 +32,7 @@ export const  handleClick =async (link:string,base:string,appurl:string) => {
    const response= await fetch(base+"/api/prepopulatetemplate/downloadyaml",requestOptions);
     const result = await response.text();
     console.log(result);
-  const yaml = require('js-yaml');
+   const yaml = require('js-yaml');
     const doc = yaml.load(result,'utf8');
   const myJSON :string = JSON.stringify(doc.values);
   console.log(myJSON);
