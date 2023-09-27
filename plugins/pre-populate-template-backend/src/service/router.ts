@@ -58,8 +58,10 @@ export async function createRouter(
       }
     }
     let result: any;
-
-    const response2 = await fetch('https://dev.azure.com/foster-devops/mayo-backstage/_apis/git/repositories/MW-462/items?includeLinks=true&api-version=7.1-preview.1', requestOptions);
+    const organisation=config.getOptionalString(`azureDevOps.organization`) as string;
+    const project=config.getOptionalString(`azureDevOps.project`) as string;
+    const repo=config.getOptionalString(`azureDevOps.repo`) as string;
+    const response2 = await fetch('https://dev.azure.com/'.concat(organisation).concat('/').concat(project).concat('/_apis/git/repositories/').concat(repo).concat('/items?includeLinks=true&api-version=7.1-preview.1'), requestOptions);
 
     try {
       result = await response2.json();
