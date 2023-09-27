@@ -21,11 +21,10 @@ export async function createRouter(
   const router = Router();
 
   router.use(express.json());
-
+  
   const fetch = require('node-fetch');
   const Authorization = 'Basic '.concat((btoa(':'.concat(config.getOptionalString(`azureDevOps.token`) as string))));
- 
- 
+  
   router.post('/downloadyaml', async (request, response) => {
     const yamlurl = request.body.url;
     
@@ -50,9 +49,7 @@ export async function createRouter(
 
 
   router.get('/data', async (_, response) => {
-
-   
-
+  
     const requestOptions = {
       method: "GET",
       redirect: "follow",
@@ -67,17 +64,19 @@ export async function createRouter(
     try {
       result = await response2.json();
     } catch (err) {
+
       response.send({ err: 'Failed to load data from server ' });
     }
 
     const url = result?.value[0]?._links?.tree?.href;
-
+    let newresult: any;
     let data;
     if (url !== undefined) {
 
       const newresponse = await fetch(url, requestOptions);
       try {
-        data = await newresponse.json()?.treeEntries;
+        newresult = await newresponse.json();
+        data = newresult?.treeEntries;
       } catch (err) {
         response.send({ err: 'Failed to load data from server ' });
 
