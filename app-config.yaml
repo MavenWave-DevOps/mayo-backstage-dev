@@ -179,6 +179,8 @@ azureDevOps:
     host: dev.azure.com
     token: ${AZURE_TOKEN}
     organization: foster-devops
+    project: mayo-backstage
+    repo: MW-462 
 
 bigqueryapi:
   projectId: infra-billing
