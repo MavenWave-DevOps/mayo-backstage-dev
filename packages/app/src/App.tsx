@@ -64,6 +64,7 @@ import {
 } from '@backstage/catalog-model';
 import CostInsight from './components/cost/costTrend';
 import { InputListExtension } from './scaffolder/InputList';
+import { TemplatePrepopulatePage } from '@internal/plugin-template-prepopulate';
 
 
 const app = createApp({
@@ -212,6 +213,7 @@ const routes = (
 
     <Route path="/catalog-graph" element={<CatalogGraphPage />} />
     <Route path="/my-plugin" element={<EntityMyPluginContent />} />
+    <Route path="/template-prepopulate" element={<TemplatePrepopulatePage />}/>
   </FlatRoutes>
 );
 

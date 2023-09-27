@@ -1,0 +1,1 @@
+export { EditTemplateComponent } from './EditTemplateComponent';
