@@ -1,1 +1,1 @@
-export { BaseComponent } from './BaseComponent';
+export { EditTemplateComponent } from './EditTemplateComponent';

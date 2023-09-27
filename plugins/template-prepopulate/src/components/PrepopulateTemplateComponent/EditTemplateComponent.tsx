@@ -9,7 +9,7 @@ import {
 import { PrepopulateTemplateComponent } from './PrepopulateTemplateComponent';
 
 
-export const BaseComponent = () => (
+export const EditTemplateComponent = () => (
 
     <Page themeId="tool">
       <Header title="Pre-Populate Templates" subtitle="Pre-populate the templates with standard values ">

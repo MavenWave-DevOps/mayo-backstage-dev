@@ -13,7 +13,7 @@ export const TemplatePrepopulatePage = templatePrepopulatePlugin.provide(
   createRoutableExtension({
     name: 'TemplatePrepopulatePage',
     component: () =>
-      import('./components/PrepopulateTemplateComponent').then(m => m.BaseComponent),
+      import('./components/PrepopulateTemplateComponent').then(m => m.EditTemplateComponent),
     mountPoint: rootRouteRef,
   }),
 );

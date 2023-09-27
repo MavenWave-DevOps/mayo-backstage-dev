@@ -13,7 +13,7 @@ const LoadApiData = (base:string) => {
   useEffect(() => {
       const fetchData = async () => {
           let newresult: any;
-          const url = base+"/api/prepopulatetemplate/data"
+          const url = base+"/api/editTemplate/data"
           
           if (url !== undefined) {
               const newresponse = await fetch(url);
