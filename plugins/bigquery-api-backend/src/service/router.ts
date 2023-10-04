@@ -38,6 +38,7 @@ export async function createRouter(
   const projectId = readAppConfig.getString('projectId');
   const gbdataset = readAppConfig.getString('gbdataSet');
   const { GoogleAuth, Impersonated } = require('google-auth-library');
+  const gbfolderId = readAppConfig.getString('gbfolderId');
 
 
   router.get('/dataset', async (_, response) => {
@@ -61,11 +62,10 @@ export async function createRouter(
     const res = await targetClient.request({
       url, method: 'POST', headers: {
         'Content-type': 'application/json; charset=UTF-8',
-        'Authorization': 'Bearer ${accessToken}',
       },
       body: JSON.stringify({
         "query":
-          `SELECT invoice.month, service.description, project.id SUM(cost) + SUM(IFNULL((SELECT SUM(c.amount) FROM UNNEST(credits) c), 0)) AS total, (SUM(CAST(cost AS NUMERIC)) + SUM(IFNULL((SELECT SUM(CAST(c.amount AS NUMERIC)) FROM UNNEST(credits) AS c), 0))) AS usage_amt FROM ${projectId}.${gbdataset}.gcp_billing_export_v1_0105E1_61A6DE_D85D10 where project.id = 'mw-infra-shared-services' and TIMESTAMP_TRUNC(_PARTITIONTIME, DAY) = TIMESTAMP(current_date('UTC')) GROUP BY 1, 2, 3 ORDER BY 1 ASC, 2 ASC`,
+          `SELECT distinct invoice.month AS invoice_month, service.description AS service_description, (SELECT key from UNNEST(project.labels) where value = 't1') as env, (SELECT resource_name from UNNEST(project.ancestors) where resource_name = ${gbfolderId}) as folderID, SUM(cost) + SUM(IFNULL((SELECT SUM(c.amount) FROM UNNEST(credits) c), 0)) AS net_cost, (SUM(CAST(cost AS NUMERIC)) + SUM(IFNULL((SELECT SUM(CAST(c.amount AS NUMERIC)) FROM UNNEST(credits) AS c), 0))) AS usage_amount FROM ${projectId}.${gbdataset}.gcp_billing_export_v1_0105E1_61A6DE_D85D10 as bq, UNNEST(project.ancestors) as ancestor WHERE ancestor.resource_name = ${gbfolderId} AND TIMESTAMP_TRUNC(_PARTITIONTIME, DAY) = TIMESTAMP(current_date('UTC')) GROUP BY 1, 2, 3, 4 ORDER BY 1, 2, 3, 4`,
         "useLegacySql": false
       }),
     });
