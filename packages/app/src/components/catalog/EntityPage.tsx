@@ -1,5 +1,6 @@
 import React from 'react';
 import { Button, Grid } from '@material-ui/core';
+import { BgcostinsightPage } from 'backstage-plugin-costinsight';
 import {
   EntityApiDefinitionCard,
   EntityConsumedApisCard,
@@ -89,7 +90,7 @@ const cicdContent = (
     </EntitySwitch.Case>
 
     <EntitySwitch.Case if={isAzureDevOpsAvailable}>
-        <EntityAzurePipelinesContent defaultLimit={15} />
+      <EntityAzurePipelinesContent defaultLimit={15} />
     </EntitySwitch.Case>
 
     <EntitySwitch.Case if={isGithubActionsAvailable}>
@@ -217,6 +218,10 @@ const serviceEntityPage = (
 
     <EntityLayout.Route path="/kubernetes" title="Kubernetes">
       <EntityKubernetesContent refreshIntervalMs={30000} />
+    </EntityLayout.Route>
+
+    <EntityLayout.Route path="/bgcostinsight" title="Cost-Insights">
+      <BgcostinsightPage />
     </EntityLayout.Route>
 
   </EntityLayout>

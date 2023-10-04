@@ -85,7 +85,8 @@ export const convertWithoutKey = (input) => {
 
 export const useStyles = makeStyles((theme) => ({
     container: {
-        backgroundColor: "grey"
+        backgroundColor: "grey",
+        width: '100%',
     },
     item: {
         width: "100%"
@@ -103,9 +104,21 @@ export const useStyles = makeStyles((theme) => ({
         justifyContent: "center"
     },
     chartWrapper: {
-        width: "95%",
+        width: "100%",
         height: "100%",
         overflow: "hidden"
+    },
+    leftbox: {
+        float: 'left',
+        background: 'grey',
+        width: '25%',
+        height: '280px',
+    },
+    rightbox: {
+        float: 'right',
+        background: 'blue',
+        width: '25%',
+        height: '280px',
     }
-}));
 
+}));
