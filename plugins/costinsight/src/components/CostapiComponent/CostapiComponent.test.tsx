@@ -1,5 +1,5 @@
 import React from 'react';
-import { CostapiComponent } from './CostapiComponen';
+import { CostapiComponent } from './CostapiComponent';
 import { rest } from 'msw';
 import { setupServer } from 'msw/node';
 import { screen } from '@testing-library/react';

@@ -64,7 +64,7 @@ import {
 } from '@backstage/catalog-model';
 import CostInsight from './components/cost/costTrend';
 import { InputListExtension } from './scaffolder/InputList';
-import { BgcostinsightPage } from 'backstage-plugin-costinsight';
+// import { BgcostinsightPage } from 'backstage-plugin-costinsight';
 
 
 const app = createApp({
