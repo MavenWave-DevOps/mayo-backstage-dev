@@ -220,7 +220,7 @@ const serviceEntityPage = (
       <EntityKubernetesContent refreshIntervalMs={30000} />
     </EntityLayout.Route>
 
-    <EntityLayout.Route path="/bgcostinsight" title="Bg-Cost-Insights">
+    <EntityLayout.Route path="/bgcostinsight" title="Cost-Insights">
       <BgcostinsightPage />
     </EntityLayout.Route>
 
