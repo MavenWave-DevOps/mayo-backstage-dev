@@ -59,7 +59,7 @@ export const PrepopulateTemplateComponent = () => {
         <LinearProgress />
       </Box>}
       <Grid container spacing={3}>
-        {data && data.map((data: any) =>
+        {Array.isArray(data) && data.map((data: any) =>
           <Grid item key={data.relativePath} xs={6}  >
             <Box height={"220px"} p={2}>  <Card >
               <CardMedia component="img" src="https://img.freepik.com/free-photo/abstract-grunge-decorative-relief-navy-blue-stucco-wall-texture-wide-angle-rough-colored-background_1258-28311.jpg?w=900&t=st=1695030006~exp=1695030606~hmac=e3f08f99202533292475360937396ad5ec4bb663554162b276c706d482d73222" height="70" >
