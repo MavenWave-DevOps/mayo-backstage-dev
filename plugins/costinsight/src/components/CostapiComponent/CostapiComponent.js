@@ -5,7 +5,6 @@ import { Grid, Card, CardContent, makeStyles } from "@material-ui/core";
 import { env } from 'process';
 import { Page, Header, HeaderLabel, Content } from '@backstage/core-components';
 
-
 export const CostapiComponent = () => {
     const apiUrl = process.env.APP_CONFIG[0].data.backend.baseUrl
     var invoiceMonth = []
@@ -28,7 +27,6 @@ export const CostapiComponent = () => {
                 });
 
                 const data = await response.json();
-
                 const rrows = convertSchema(data.responseData.schema.fields, data.responseData.rows);
                 folderId.push(rrows[0].folderID)
                 invoiceMonth.push(rrows[0].invoice_month)
