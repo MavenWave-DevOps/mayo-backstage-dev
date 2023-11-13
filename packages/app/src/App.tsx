@@ -1,6 +1,5 @@
 import React from 'react';
 import {
-  // Navigate,
   Route
 } from 'react-router';
 import { apiDocsPlugin, ApiExplorerPage } from '@backstage/plugin-api-docs';
@@ -62,10 +61,7 @@ import {
   RELATION_PART_OF,
   RELATION_PROVIDES_API,
 } from '@backstage/catalog-model';
-import CostInsight from './components/cost/costTrend';
 import { InputListExtension } from './scaffolder/InputList';
-// import { BgcostinsightPage } from 'backstage-plugin-costinsight';
-
 
 const app = createApp({
   apis,
@@ -143,7 +139,6 @@ const routes = (
       {homePage}
     </Route>
     <Route path="/explore" element={<ExplorePage />} />
-    {/* <Route path="/" element={<Navigate to="catalog" />} /> */}
     <Route path="/api-docs" element={<ApiExplorerPage />} />
     <Route path="/catalog" element={<CatalogIndexPage />} />
     <Route
@@ -152,9 +147,6 @@ const routes = (
     >
       {entityPage}
     </Route>
-
-
-    <Route path="/cost-insights" element={<CostInsight />} />
 
     <Route path="/docs" element={<TechDocsIndexPage />} />
     <Route
@@ -213,8 +205,6 @@ const routes = (
 
     <Route path="/catalog-graph" element={<CatalogGraphPage />} />
     <Route path="/my-plugin" element={<EntityMyPluginContent />} />
-    {/* <Route path="/bgcostinsight" element={<BgcostinsightPage />} />  //will see for other integration */}
-
   </FlatRoutes>
 );
 

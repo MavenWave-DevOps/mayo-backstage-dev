@@ -36,6 +36,9 @@ export default async function createPlugin(
     factory: DefaultCatalogCollatorFactory.fromConfig(env.config, {
       discovery: env.discovery,
       tokenManager: env.tokenManager,
+      filter: {
+        kind: ['API', 'Component', 'Domain', 'Group', 'System', 'User'],
+      },
     }),
   });
 
