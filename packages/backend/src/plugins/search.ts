@@ -5,8 +5,9 @@ import {
   LunrSearchEngine,
 } from '@backstage/plugin-search-backend-node';
 import { PluginEnvironment } from '../types';
-import { DefaultCatalogCollatorFactory } from '@backstage/plugin-catalog-backend';
-import { DefaultTechDocsCollatorFactory } from '@backstage/plugin-techdocs-backend';
+import { DefaultCatalogCollatorFactory } from '@backstage/plugin-search-backend-module-catalog';
+import { DefaultTechDocsCollatorFactory } from '@backstage/plugin-search-backend-module-techdocs';
+
 import { Router } from 'express';
 
 export default async function createPlugin(
@@ -36,9 +37,6 @@ export default async function createPlugin(
     factory: DefaultCatalogCollatorFactory.fromConfig(env.config, {
       discovery: env.discovery,
       tokenManager: env.tokenManager,
-      filter: {
-        kind: ['API', 'Component', 'Domain', 'Group', 'System', 'User'],
-      },
     }),
   });
 

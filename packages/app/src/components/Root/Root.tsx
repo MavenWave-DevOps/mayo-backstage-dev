@@ -20,7 +20,6 @@ import {
   SidebarGroup,
   SidebarItem,
   SidebarPage,
-  SidebarScrollWrapper,
   SidebarSpace,
   SidebarExpandButton,
   useSidebarOpenState,
@@ -37,6 +36,7 @@ import CategoryIcon from '@material-ui/icons/Category';
 import LayersIcon from '@material-ui/icons/Layers';
 import { useApp } from '@backstage/core-plugin-api';
 import { MyGroupsSidebarItem } from '@backstage/plugin-org';
+import BuildIcon from '@material-ui/icons/Build';
 
 const useSidebarLogoStyles = makeStyles<BackstageTheme, { themeId: string }>({
   root: {
@@ -151,10 +151,8 @@ export const Root = ({ children }: PropsWithChildren<{}>) => (
         <SidebarItem icon={LayersIcon} to="explore" text="Explore" />
         <SidebarItem icon={LibraryBooks} to='docs' text='Docs' />
         <SidebarItem icon={CreateComponentIcon} to='create' text='Create...' />
-        <SidebarDivider />
-        <SidebarScrollWrapper>
-          <SidebarItem icon={MapIcon} to='tech-radar' text='Tech Radar' />
-        </SidebarScrollWrapper>
+        <SidebarItem icon={MapIcon} to='tech-radar' text='Tech Radar' />
+        <SidebarItem icon={BuildIcon} to="entity-validation" text="Validator" />
         <SidebarDivider />
       </SidebarGroup>
       <SidebarItem icon={GraphiQLIcon} to="graphiql" text="GraphiQL" />

@@ -293,8 +293,6 @@ export const CostapiComponent = () => {
     const classes = useStyles();
     return (
         <Page themeId="tool">
-            <Header title="MCCP Cloud Expense Summary" subtitle="(Google Cloud Environment)" >
-            </Header>
             <div id='boxes'>
                 <div>
                     <Content>

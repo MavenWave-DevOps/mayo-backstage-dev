@@ -1,17 +1,16 @@
 import {
-    HeaderWorldClock,
-    ClockConfig,
-    HomePageStarredEntities,
-    CustomHomepageGrid,
-    HomePageToolkit,
-    HomePageCompanyLogo,
-  
+  HeaderWorldClock,
+  ClockConfig,
+  HomePageStarredEntities,
+  CustomHomepageGrid,
+  HomePageToolkit,
+  HomePageCompanyLogo,
+
 } from '@backstage/plugin-home';
 
 import { Content, Header, Page } from '@backstage/core-components';
 import { HomePageSearchBar } from '@backstage/plugin-search';
 import { HomePageCalendar } from '@backstage/plugin-gcalendar';
-import { MicrosoftCalendarCard } from '@backstage/plugin-microsoft-calendar';
 import React from 'react';
 import HomeIcon from '@material-ui/icons/Home';
 import { DocsIcon } from '@backstage/core-components';
@@ -24,7 +23,7 @@ const clockConfigs: ClockConfig[] = [
   {
     label: 'UTC',
     timeZone: 'UTC',
-    },
+  },
   {
     label: 'IST',
     timeZone: 'Asia/Kolkata',
@@ -81,31 +80,22 @@ const defaultConfig = [
       Component: 'service',
     }
   },
-  {
-    component: 'MicrosoftCalendarCard',
-     x: 0,
-    y: 2,
-    width: 3,
-    height: 5,
-
-  },
 ];
 
 export const homePage = (
-    
+
   <Page themeId="home">
-        <Header title={''} pageTitleOverride=" Welcome Back! ">
+    <Header title={''} pageTitleOverride=" Welcome Back! ">
       <HeaderWorldClock
         clockConfigs={clockConfigs}
         customTimeFormat={timeFormat}
       />
     </Header>
     <Content>
-            <CustomHomepageGrid config={defaultConfig}>
-                
+      <CustomHomepageGrid config={defaultConfig}>
+
         <HomePageSearchBar />
         <HomePageCalendar />
-        <MicrosoftCalendarCard />
         <HomePageStarredEntities />
         <HomePageCompanyLogo />
         <HomePageToolkit
@@ -114,16 +104,16 @@ export const homePage = (
               url: 'https://mayo.edu',
               label: 'Mayo Homepage',
               icon: <HomeIcon />,
-                        },
-              {
+            },
+            {
               url: 'https://www.mayo.edu/research/publications',
               label: 'Clinical Docs',
               icon: <DocsIcon />,
             },
           ]}
         />
-            </CustomHomepageGrid>
-        </Content>
-        
+      </CustomHomepageGrid>
+    </Content>
+
   </Page>
 );

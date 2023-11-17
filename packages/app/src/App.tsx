@@ -62,6 +62,7 @@ import {
   RELATION_PROVIDES_API,
 } from '@backstage/catalog-model';
 import { InputListExtension } from './scaffolder/InputList';
+import { EntityValidationPage } from '@backstage/plugin-entity-validation';
 
 const app = createApp({
   apis,
@@ -205,6 +206,7 @@ const routes = (
 
     <Route path="/catalog-graph" element={<CatalogGraphPage />} />
     <Route path="/my-plugin" element={<EntityMyPluginContent />} />
+    <Route path="/entity-validation" element={<EntityValidationPage />} />
   </FlatRoutes>
 );
 
