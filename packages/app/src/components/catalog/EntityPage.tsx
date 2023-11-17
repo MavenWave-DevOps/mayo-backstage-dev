@@ -56,7 +56,6 @@ import {
 
 import { TechDocsAddons } from '@backstage/plugin-techdocs-react';
 import { ReportIssue } from '@backstage/plugin-techdocs-module-addons-contrib';
-import { EntityMyPluginContent } from '@internal/plugin-my-plugin';
 import {
   EntityArgoCDOverviewCard,
   isArgocdAvailable
@@ -206,10 +205,6 @@ const serviceEntityPage = (
           <EntityDependsOnResourcesCard variant="gridItem" />
         </Grid>
       </Grid>
-    </EntityLayout.Route>
-
-    <EntityLayout.Route path="/my-plugin" title="My Plugin">
-      <EntityMyPluginContent />
     </EntityLayout.Route>
 
     <EntityLayout.Route path="/docs" title="Docs">
