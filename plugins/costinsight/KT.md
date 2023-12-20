@@ -184,6 +184,7 @@
 ![9](https://github.com/MavenWave-DevOps/mayo-backstage-dev/assets/129176103/1c165888-5894-4c4a-8d8f-f9b3e0f0c3b0)
 
 ### Read catalog-info.yaml entity file as REST api call.
+![10](https://github.com/MavenWave-DevOps/mayo-backstage-dev/assets/129176103/179d5115-c523-410e-91f9-d07d9536814e)
 
 #### Note- before reading the entity file, please do ensure the entity is responsive from the browser.
 
