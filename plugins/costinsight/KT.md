@@ -181,6 +181,7 @@
 
 #### (catalog-info.yaml)
 
+![9](https://github.com/MavenWave-DevOps/mayo-backstage-dev/assets/129176103/1c165888-5894-4c4a-8d8f-f9b3e0f0c3b0)
 
 ### Read catalog-info.yaml entity file as REST api call.
 
