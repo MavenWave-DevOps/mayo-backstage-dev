@@ -120,6 +120,7 @@
 #### return json }
 
 ## Plugin- Costinsight
+![3](https://github.com/MavenWave-DevOps/mayo-backstage-dev/assets/129176103/49f1bf25-b240-4f35-85d6-e575ad2ccb70)
 
 ### - This UI plugin which is associated with the backend plugin. We followed the instruction  provided by backstage ‘integrate with software catalog’ documentations.
 
@@ -147,6 +148,7 @@
 ### Create Gcp service account and impersonate to secure access
 
 #### - Create a service account in google cloud console with required admin credentials.
+![4](https://github.com/MavenWave-DevOps/mayo-backstage-dev/assets/129176103/61651305-653e-4a3a-a508-50b7b8159ad9)
 
 
 
