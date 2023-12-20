@@ -72,6 +72,7 @@
 
 ### - Create backstage frontend plugin ( Plugin - costinsight ).
 ### - Run this command from terminal ‘ **yarn new backstage-cli`** and follow the instruction as shown on prompt
+![2](https://github.com/MavenWave-DevOps/mayo-backstage-dev/assets/129176103/fb2359d4-2a0d-4d55-90ba-a6741f5f8ead)
 
 ## Step 3-
 
