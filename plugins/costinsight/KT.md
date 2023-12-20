@@ -38,6 +38,7 @@
 ### ● Create a Router file from this backend plugin for the REST operation which composed SQL queries, which invoked gcp bigquery api and returned the dataset in response( e.g- gcp resource name, expense amount and folderID ).
 
 ## Router.ts (business logic)
+![router](https://github.com/MavenWave-DevOps/mayo-backstage-dev/assets/129176103/dbae5f49-cb16-4cca-8126-5285b31f14b5)
 
 ## Sample content of router.ts file
 
