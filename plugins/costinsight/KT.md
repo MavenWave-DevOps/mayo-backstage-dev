@@ -38,7 +38,7 @@
 ### ● Create a Router file from this backend plugin for the REST operation which composed SQL queries, which invoked gcp bigquery api and returned the dataset in response( e.g- gcp resource name, expense amount and folderID ).
 
 ## Router.ts (business logic)
-
+![Javatpoint](blob:https://github.com/443892bf-b6fe-499b-8b61-78b16377cef6) 
 ## Sample content of router.ts file
 
 
