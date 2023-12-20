@@ -194,5 +194,8 @@
 
 #### Do the following configuration in app-config.yaml (Backstage catalog configuration file) to inject the  required parameters like gcp project ID and bigquery dataset name.
 
+![11](https://github.com/MavenWave-DevOps/mayo-backstage-dev/assets/129176103/d6f746fc-516b-4ef9-bd7a-c009e859ecfe)
+
+
 
 
