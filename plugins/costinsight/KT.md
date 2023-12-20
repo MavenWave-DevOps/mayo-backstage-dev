@@ -157,6 +157,8 @@
 #### Note- Do not need to setup Keys as we would like to impersonate the service account and not perform The action as service account directly
 
 #### - To update the permissions assigned to a service account , use IAM as shown below.
+![6](https://github.com/MavenWave-DevOps/mayo-backstage-dev/assets/129176103/352297e4-2adf-4b76-8d7c-7046dabfb75a)
+
 ####  - Add Role to Service account
 
 #####   1. Service account Token Creator
