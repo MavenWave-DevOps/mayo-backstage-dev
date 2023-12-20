@@ -173,6 +173,8 @@
 
 #####  - Use service account in the file router.ts (backend-plugins), refer the code snippet below-
 
+![8](https://github.com/MavenWave-DevOps/mayo-backstage-dev/assets/129176103/a51d9056-d499-45a5-b8a2-f80c5e719ed7)
+
 ## Inject gcp folder id from entity
 
 #### Add the gcp folder id into backstage software catalog entity file
