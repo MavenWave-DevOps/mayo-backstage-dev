@@ -158,13 +158,9 @@
 
 #### - To update the permissions assigned to a service account , use IAM as shown below.
 ![6](https://github.com/MavenWave-DevOps/mayo-backstage-dev/assets/129176103/352297e4-2adf-4b76-8d7c-7046dabfb75a)
-
 ####  - Add Role to Service account
-
 #####   1. Service account Token Creator
-
 #####   2. Service usage Consumer
-
 #####   3. Bigquery Admin
 
 ### E.g-
