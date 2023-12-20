@@ -165,6 +165,7 @@
 
 ### E.g-
 
+![7](https://github.com/MavenWave-DevOps/mayo-backstage-dev/assets/129176103/dfda752f-041d-4dd3-9077-c2cb145278ed)
 
 #### Now, service account created and assigned all the required permissions, time to use in backstage
 
